@@ -1,0 +1,53 @@
+{
+  "name": "no-hassle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf ./build/*",
+    "build": "npm run clean && tsc",
+    "start": "npm run build && node build/index.js",
+    "lint": "tslint 'src/**/*.ts'",
+    "test": "jest --forceExit",
+    "test:coverage": "jest --coverage --collectCoverageFrom=src/**/*.ts --forceExit",
+    "test:watch": "jest --watchAll",
+    "pretest": "npm run build",
+    "prepare": "npm run build",
+    "release": "node_modules/np/source/cli.js --no-cleanup",
+    "git:clean": "git branch --merged | egrep -v \"(^\\*|master|staging|develop)\" | xargs git branch -d",
+    "git:clean-remote": "git remote prune origin"
+  },
+  "precommit": [
+    "lint",
+    "build"
+  ],
+  "dependencies": {
+    "@hapi/joi": "~15.1.1",
+    "express": "~4.17.1",
+    "celebrate": "~10.0.1",
+    "joi-extract-type": "~15.0.0",
+    "joi-to-swagger": "~git+ssh://git@github.com:ShopBonsai/joi-to-swagger.git",
+    "swagger-jsdoc": "~3.4.0",
+    "swagger-ui-express": "~4.0.7",
+    "swagger2openapi": "~5.3.1"
+  },
+  "devDependencies": {
+    "@types/express": "~4.17.0",
+    "@types/jest": "^24.0.15",
+    "coveralls": "^3.0.4",
+    "jest": "^24.8.0",
+    "joi": "^14.3.1",
+    "pre-commit": "^1.2.2",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "typescript": "^3.5.2"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "directories": {
+    "test": "tests"
+  }
+}
