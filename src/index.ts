@@ -8,7 +8,8 @@ import { IOptions, IRouteResult, IExecOptions } from './interfaces';
 import 'joi-extract-type';
 
 const addRoute = (app: Application, options: IExecOptions, ...args: RequestHandler[]): IRouteResult => {
-  const { method, path, input = null, schemaOptions = {}, docs = true } = options;
+  const { method, path: rawPath, prefix = '', input = null, schemaOptions = {}, docs = true } = options;
+  const path = rawPath === '/' ? prefix : `${prefix}${rawPath}`;
 
   // TODO: Add method overloading -> no options provided -> basic result
 
@@ -21,18 +22,18 @@ const addRoute = (app: Application, options: IExecOptions, ...args: RequestHandl
   input ? app[method](path, validateSchema(input, schemaOptions), ...args) : app[method](path, args);
 
   // Return function instance with same router for currying
-  return router.use(app);
+  return router.use(app, path);
 };
 
 export const router = {
   use: (app: Application, prefix: string = ''): IRouteResult => ({
-    get: (path, options, ...args) => addRoute(app, { ...options, path: `${prefix}${path}`, method: 'get' }, ...args),
-    post: (path, options, ...args) => addRoute(app, { ...options, path: `${prefix}${path}`, method: 'post' }, ...args),
-    put: (path, options, ...args) => addRoute(app, { ...options, path: `${prefix}${path}`, method: 'put' }, ...args),
+    get: (path, options, ...args) => addRoute(app, { ...options, path, prefix, method: 'get' }, ...args),
+    post: (path, options, ...args) => addRoute(app, { ...options, path, prefix, method: 'post' }, ...args),
+    put: (path, options, ...args) => addRoute(app, { ...options, path, prefix, method: 'put' }, ...args),
     patch: (path, options, ...args) =>
-      addRoute(app, { ...options, path: `${prefix}${path}`, method: 'patch' }, ...args),
+      addRoute(app, { ...options, path, prefix, method: 'patch' }, ...args),
     delete: (path, options, ...args) =>
-      addRoute(app, { ...options, path: `${prefix}${path}`, method: 'delete' }, ...args),
+      addRoute(app, { ...options, path, prefix, method: 'delete' }, ...args),
   }),
 };
 

@@ -67,6 +67,7 @@ export interface IExecOptions extends IDocsOptions {
   docs?: boolean;
   method: IMethod;
   path: string;
+  prefix?: string;
 }
 
 export interface IOptions extends IDocsOptions {
