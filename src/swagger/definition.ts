@@ -1,4 +1,4 @@
-import j2s from 'joi-to-swagger';
+const j2s = require('joi-to-swagger');
 
 import { ISchema, ISwaggerDefinition } from '../interfaces';
 import { updateSwagger } from '../swagger';
