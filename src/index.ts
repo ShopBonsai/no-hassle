@@ -25,14 +25,14 @@ const addRoute = (app: Application, options: IExecOptions, ...args: RequestHandl
 };
 
 export const router = {
-  use: (app: Application): IRouteResult => ({
-    get: (path, options, ...args) => addRoute(app, { ...options, path, method: 'get' }, ...args),
-    post: (path, options, ...args) => addRoute(app, { ...options, path, method: 'post' }, ...args),
-    put: (path, options, ...args) => addRoute(app, { ...options, path, method: 'put' }, ...args),
+  use: (app: Application, prefix: string = ''): IRouteResult => ({
+    get: (path, options, ...args) => addRoute(app, { ...options, path: `${prefix}${path}`, method: 'get' }, ...args),
+    post: (path, options, ...args) => addRoute(app, { ...options, path: `${prefix}${path}`, method: 'post' }, ...args),
+    put: (path, options, ...args) => addRoute(app, { ...options, path: `${prefix}${path}`, method: 'put' }, ...args),
     patch: (path, options, ...args) =>
-      addRoute(app, { ...options, path, method: 'patch' }, ...args),
+      addRoute(app, { ...options, path: `${prefix}${path}`, method: 'patch' }, ...args),
     delete: (path, options, ...args) =>
-      addRoute(app, { ...options, path, method: 'delete' }, ...args),
+      addRoute(app, { ...options, path: `${prefix}${path}`, method: 'delete' }, ...args),
   }),
 };
 
