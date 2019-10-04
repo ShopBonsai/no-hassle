@@ -1,4 +1,4 @@
-import swaggerConverter from 'swagger2openapi';
+const swaggerConverter = require('swagger2openapi');
 import { ISwaggerDefinition } from '../interfaces';
 
 export const convert = async (version: '2.0' | '3.0', result: ISwaggerDefinition): Promise<ISwaggerDefinition> => {
