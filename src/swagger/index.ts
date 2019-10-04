@@ -3,7 +3,6 @@ import { cleanPath } from '../lib/utils';
 import { baseDefinition } from './baseDefinition';
 import { getParameters } from './parameter';
 import { getResponses } from './response';
-import { convert } from './converter';
 import { getAuthentication } from './auth';
 
 const globalSwagger: ISwaggerDefinition = {
@@ -42,11 +41,11 @@ export const generateSwagger = (path: string, method: IMethod, options: IDocsOpt
   }
 };
 
-export const getSwagger = async (options: ISwaggerOptions = {}): Promise<ISwaggerDefinition> => {
+export const getSwagger = (options: ISwaggerOptions = {}): ISwaggerDefinition => {
   const { apiVersion = '2.0', host = '', auth, ...otherOptions } = options;
 
   const authentication = getAuthentication(auth);
-  const result = {
+  const result: ISwaggerDefinition = {
     ...globalSwagger,
     ...authentication,
     host,
@@ -56,5 +55,5 @@ export const getSwagger = async (options: ISwaggerOptions = {}): Promise<ISwagge
     },
   };
 
-  return convert(apiVersion, result);
+  return result;
 };
