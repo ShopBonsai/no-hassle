@@ -22,7 +22,7 @@ const addRoute = (app: Application, options: IExecOptions, ...args: RequestHandl
   input ? app[method](path, validateSchema(input, schemaOptions), ...args) : app[method](path, args);
 
   // Return function instance with same router for currying
-  return router.use(app, path);
+  return router.use(app, prefix);
 };
 
 export const router = {
