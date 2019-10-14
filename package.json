@@ -27,7 +27,7 @@
     "express": "~4.17.1",
     "celebrate": "~10.0.1",
     "joi-extract-type": "~15.0.0",
-    "joi-to-swagger": "~git+ssh://git@github.com:ShopBonsai/joi-to-swagger.git",
+    "joi-to-swagger": "git://github.com/ShopBonsai/joi-to-swagger.git",
     "swagger-jsdoc": "~3.4.0",
     "swagger-ui-express": "~4.0.7",
     "swagger2openapi": "~5.3.1"
