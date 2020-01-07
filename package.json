@@ -23,8 +23,8 @@
     "build"
   ],
   "dependencies": {
-    "@hapi/joi": "15.1.1",
-    "celebrate": "11.0.1",
+    "@hapi/joi": "~15.1.1",
+    "celebrate": "~10.0.1",
     "express": "4.17.1",
     "joi-extract-type": "15.0.2",
     "joi-to-swagger": "git://github.com/ShopBonsai/joi-to-swagger.git",
@@ -35,15 +35,19 @@
   "devDependencies": {
     "@types/express": "4.17.2",
     "@types/jest": "^24.0.25",
+    "@types/hapi__joi": "~15.0.4",
     "coveralls": "^3.0.9",
     "jest": "^24.9.0",
-    "joi": "^14.3.1",
     "np": "^5.0.3",
     "pre-commit": "^1.2.2",
     "ts-jest": "^24.3.0",
     "tslint": "^5.20.1",
     "tslint-config-airbnb": "^5.11.2",
     "typescript": "^3.7.4"
+  },
+  "peerDependencies": {
+    "@hapi/joi": "~15.1.1",
+    "celebrate": "~10.0.1"
   },
   "engines": {
     "node": ">=8.0.0"
