@@ -50,5 +50,9 @@
   },
   "directories": {
     "test": "tests"
+  },
+  "license": "ISC",
+  "directories": {
+    "tests": "tests"
   }
 }
