@@ -1,4 +1,4 @@
-# Nohassle
+# No hassle
 
 Makes Node.js route handling easy with support for Joi schema validation and automatic Swagger generation based on these schema definitions. Uses Expressjs routing mechanism.
 
@@ -7,13 +7,13 @@ Makes Node.js route handling easy with support for Joi schema validation and aut
 Install via npm
 
 ```shell
-npm install nohassle
+npm install no-hassle
 ```
 
 or via yarn
 
 ```shell
-yarn add nohassle
+yarn add no-hassle
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ yarn add nohassle
 const express = require('express');
 const swaggerUi = require("swagger-ui-express");
 
-const { router, getSwagger } = require('nohassle');
+const { router, getSwagger } = require('no-hassle');
 
 // Create Express app instance
 const app = express();
