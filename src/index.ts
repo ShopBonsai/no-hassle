@@ -40,4 +40,4 @@ export const router = {
 export const isValidationError = (error: object): boolean => isCelebrate(error);
 
 export * from './swagger/errors';
-export { IOptions, getSwagger, validateValue };
+export { IOptions, getSwagger, validateValue, validateSchema };
