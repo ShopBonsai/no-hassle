@@ -19,7 +19,7 @@ const addRoute = (app: Application, options: IExecOptions, ...args: RequestHandl
   }
 
   // Add express route (with optional validation)
-  input ? app[method](path, validateSchema(input, schemaOptions), ...args) : app[method](path, args);
+  input && Object.keys(input).length > 0 ? app[method](path, validateSchema(input, schemaOptions), ...args) : app[method](path, args);
 
   // Return function instance with same router for currying
   return router.use(app, prefix);
