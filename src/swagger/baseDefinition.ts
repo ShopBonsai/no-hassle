@@ -8,17 +8,23 @@ import {
   unauthorizedErrorSchema,
 } from './errors';
 
-export const baseDefinition = ({ title, description, host, basePath }: ISwaggerBaseDefinition): ISwaggerDefinition => ({
+export const baseDefinition = ({
+  title,
+  description,
   host,
   basePath,
-  swagger: '2.0',
+  contact,
+  version,
+  apiVersion = '2.0',
+}: ISwaggerBaseDefinition): ISwaggerDefinition => ({
+  host,
+  basePath,
+  swagger: apiVersion,
   info: {
     title,
     description,
-    version: '1.0.0',
-    contact: {
-      email: 'developers@shopbonsai.ca',
-    },
+    version,
+    contact,
   },
   paths: {},
   definitions: {

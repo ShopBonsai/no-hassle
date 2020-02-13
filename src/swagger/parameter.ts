@@ -8,12 +8,12 @@ export const getParameters = (swagger: ISwaggerDefinition, input?: IInput) => {
 
   const { body, query, params } = input;
   const result: {
-    in: string
-    name: string
-    required: boolean
+    in: string;
+    name: string;
+    required: boolean;
     schema: {
-      $ref: string,
-    },
+      $ref: string;
+    };
   }[] = [];
 
   if (body) {
