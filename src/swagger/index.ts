@@ -5,34 +5,50 @@ import { getParameters } from './parameter';
 import { getResponses } from './response';
 import { getAuthentication } from './auth';
 
+enum SwaggerDefaultConfig {
+  VERSION = '2.0',
+  HOST = '',
+}
+
+// TODO: move expectation to consumer
 const globalSwagger: ISwaggerDefinition = {
   ...baseDefinition({
     title: 'Default swagger title',
     description: 'The API is documented here',
     host: 'localhost:3000',
     basePath: '/',
+    version: '1.0',
+    apiVersion: '2.0',
+    contact: { email: 'developers@shopbonsai.com' },
   }),
 };
 
-export const updateSwagger = (key: string, values: object) => Object.assign(globalSwagger[key], values);
+export const updateSwagger = (key: string, values: object) =>
+  Object.assign(globalSwagger[key], values);
 
 export const generateSwagger = (path: string, method: IMethod, options: IDocsOptions) => {
-  const { input, output, summary, description, tags = [] } = options;
+  const {
+    input,
+    output,
+    contentTypes = ['application/json'],
+    summary,
+    description,
+    tags = [],
+  } = options;
 
   const cleanedPath = cleanPath(path);
+
   const result = {
     [method]: {
       tags,
-      produces: ['application/json'],
+      produces: contentTypes,
       parameters: getParameters(globalSwagger, input),
       responses: getResponses(globalSwagger, output),
+      // optional
+      ...(summary && { summary }),
+      ...(description && { description }),
     },
   };
-
-  // Optional properties
-  if (summary) Object.assign(result[method], { summary });
-  if (description) Object.assign(result[method], { description });
-
   // If path already exists (other method for example)
   if (globalSwagger.paths.hasOwnProperty(cleanedPath)) {
     Object.assign(globalSwagger.paths[cleanedPath], result);
@@ -42,7 +58,12 @@ export const generateSwagger = (path: string, method: IMethod, options: IDocsOpt
 };
 
 export const getSwagger = (options: ISwaggerOptions = {}): ISwaggerDefinition => {
-  const { apiVersion = '2.0', host = '', auth, ...otherOptions } = options;
+  const {
+    apiVersion = SwaggerDefaultConfig.VERSION,
+    host = SwaggerDefaultConfig.HOST,
+    auth,
+    ...otherOptions
+  } = options;
 
   const authentication = getAuthentication(auth);
   const result: ISwaggerDefinition = {

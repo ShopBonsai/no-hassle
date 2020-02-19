@@ -16,6 +16,9 @@ export interface ISwaggerBaseDefinition {
   description: string;
   host: string;
   basePath: string;
+  contact?: { email: string };
+  version?: string;
+  apiVersion?: string;
 }
 
 export interface ISwaggerDefinition {
@@ -28,7 +31,7 @@ export interface ISwaggerDefinition {
     title: string;
     contact: {
       email: string;
-    }
+    };
   };
   paths: {};
   definitions: {};
@@ -57,6 +60,7 @@ export type IOutput = {
 export interface IDocsOptions {
   input?: IInput;
   output?: IOutput;
+  contentTypes?: string[];
   schemaOptions?: object;
   tags?: string[];
   description?: string;

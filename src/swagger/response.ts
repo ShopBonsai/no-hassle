@@ -1,7 +1,10 @@
 import { IOutput, ISwaggerDefinition, ISchema } from '../interfaces';
 import { getDefinition } from './definition';
 
-export const getObjectDefinition = (swagger: ISwaggerDefinition, value: { [key: string]: ISchema }) => {
+export const getObjectDefinition = (
+  swagger: ISwaggerDefinition,
+  value: { [key: string]: ISchema },
+) => {
   const properties = Object.entries(value).reduce((result, [key, value]) => {
     const definition = getDefinition(swagger, value as ISchema, 'Result');
     return {
