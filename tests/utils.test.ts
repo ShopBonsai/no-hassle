@@ -1,4 +1,4 @@
-import { cleanPath } from './utils';
+import { cleanPath } from '../src/lib/utils';
 
 describe('Utility tests', () => {
   describe('Clean path tests', () => {
