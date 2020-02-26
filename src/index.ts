@@ -4,22 +4,8 @@ import { getSwagger, generateSwagger } from './swagger';
 import { validateSchema, validateValue } from './lib/validator';
 import { IOptions, IRouteResult, IExecOptions } from './interfaces';
 
-// integrates joi to TS
-import 'joi-extract-type';
-
-const addRoute = (
-  app: Application,
-  options: IExecOptions,
-  ...args: RequestHandler[]
-): IRouteResult => {
-  const {
-    method,
-    path: rawPath,
-    prefix = '',
-    input = null,
-    schemaOptions = {},
-    docs = true,
-  } = options;
+const addRoute = (app: Application, options: IExecOptions, ...args: RequestHandler[]): IRouteResult => {
+  const { method, path: rawPath, prefix = '', input = null, schemaOptions = {}, docs = true } = options;
   const path = rawPath === '/' ? prefix : `${prefix}${rawPath}`;
 
   // TODO: Add method overloading -> no options provided -> basic result
