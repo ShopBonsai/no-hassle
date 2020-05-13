@@ -56,5 +56,21 @@
   "directories": {
     "tests": "tests"
   },
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/knor-el-snor/no-hassle.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "Easy",
+    "Express",
+    "API",
+    "Joi",
+    "Schema"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/knor-el-snor/no-hassle/issues"
+  },
+  "homepage": "https://github.com/knor-el-snor/no-hassle/tree/master/packages/core#readme"
 }
