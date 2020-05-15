@@ -1,6 +1,14 @@
-# No hassle
+# No Hassle
 
 Makes Node.js route handling easy with support for [Joi schema](https://github.com/hapijs/joi) validation and automatic Swagger generation based on these schema definitions. Uses Expressjs routing mechanism.
+
+✅ Easy to maintain Joi schemas
+✅ Input validation
+✅ Easy integration tests data output validation
+✅ No more manual Swagger files, ever!
+✅ No extra comments above every function to expose
+🛠 Automatic mocked routes with the switch of a boolean (in progress)
+🛠 Automatic fully generated SDK file based on your routes (in progress)
 
 ## Installation
 
