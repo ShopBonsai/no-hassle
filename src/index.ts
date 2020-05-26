@@ -2,10 +2,22 @@ import { Application, RequestHandler } from 'express';
 import { isCelebrate } from 'celebrate';
 import { getSwagger, generateSwagger } from './swagger';
 import { validateSchema, validateValue } from './lib/validator';
-import { IOptions, IRouteResult, IExecOptions } from './interfaces';
+import { IOptions, IRouteResult, IExecOptions, ITemplateRoute } from './interfaces';
+import { HttpMethod } from './constants';
 
-const addRoute = (app: Application, options: IExecOptions, ...args: RequestHandler[]): IRouteResult => {
-  const { method, path: rawPath, prefix = '', input = null, schemaOptions = {}, docs = true } = options;
+const addRoute = (
+  app: Application,
+  options: IExecOptions,
+  ...args: RequestHandler[]
+): IRouteResult => {
+  const {
+    method,
+    path: rawPath,
+    prefix = '',
+    input = null,
+    schemaOptions = {},
+    docs = true,
+  } = options;
   const path = rawPath === '/' ? prefix : `${prefix}${rawPath}`;
 
   // TODO: Add method overloading -> no options provided -> basic result
@@ -27,19 +39,22 @@ const addRoute = (app: Application, options: IExecOptions, ...args: RequestHandl
 export const router = {
   use: (app: Application, prefix: string = ''): IRouteResult => ({
     get: (path, options, ...args) =>
-      addRoute(app, { ...options, path, prefix, method: 'get' }, ...args),
+      addRoute(app, { ...options, path, prefix, method: HttpMethod.Get }, ...args),
     post: (path, options, ...args) =>
-      addRoute(app, { ...options, path, prefix, method: 'post' }, ...args),
+      addRoute(app, { ...options, path, prefix, method: HttpMethod.Post }, ...args),
     put: (path, options, ...args) =>
-      addRoute(app, { ...options, path, prefix, method: 'put' }, ...args),
+      addRoute(app, { ...options, path, prefix, method: HttpMethod.Put }, ...args),
     patch: (path, options, ...args) =>
-      addRoute(app, { ...options, path, prefix, method: 'patch' }, ...args),
+      addRoute(app, { ...options, path, prefix, method: HttpMethod.Patch }, ...args),
     delete: (path, options, ...args) =>
-      addRoute(app, { ...options, path, prefix, method: 'delete' }, ...args),
+      addRoute(app, { ...options, path, prefix, method: HttpMethod.Delete }, ...args),
+    template: ({ path, method, ...otherOpts }, ...args) =>
+      addRoute(app, { ...otherOpts, path, prefix, method }, ...args),
   }),
 };
 
 export const isValidationError = (error: object): boolean => isCelebrate(error);
 
 export * from './swagger/errors';
-export { IOptions, getSwagger, validateValue, validateSchema };
+export * from './constants';
+export { IOptions, ITemplateRoute, getSwagger, validateValue, validateSchema };

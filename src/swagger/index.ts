@@ -1,9 +1,10 @@
-import { IMethod, IDocsOptions, ISwaggerOptions, ISwaggerDefinition } from '../interfaces';
+import { IDocsOptions, ISwaggerOptions, ISwaggerDefinition } from '../interfaces';
 import { cleanPath } from '../lib/utils';
 import { baseDefinition } from './baseDefinition';
 import { getParameters } from './parameter';
 import { getResponses } from './response';
 import { getAuthentication } from './auth';
+import { HttpMethod } from '../constants';
 
 enum SwaggerDefaultConfig {
   VERSION = '2.0',
@@ -26,7 +27,7 @@ const globalSwagger: ISwaggerDefinition = {
 export const updateSwagger = (key: string, values: object) =>
   Object.assign(globalSwagger[key], values);
 
-export const generateSwagger = (path: string, method: IMethod, options: IDocsOptions) => {
+export const generateSwagger = (path: string, method: HttpMethod, options: IDocsOptions) => {
   const {
     input,
     output,

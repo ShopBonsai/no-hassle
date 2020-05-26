@@ -1,7 +1,6 @@
 import * as Joi from '@hapi/joi';
 import { RequestHandler } from 'express';
-
-export type IMethod = 'get' | 'put' | 'post' | 'patch' | 'delete';
+import { HttpMethod } from './constants';
 
 export interface IRouteResult {
   get: (path: string, options: IOptions, ...args: RequestHandler[]) => IRouteResult;
@@ -9,6 +8,7 @@ export interface IRouteResult {
   put: (path: string, options: IOptions, ...args: RequestHandler[]) => IRouteResult;
   patch: (path: string, options: IOptions, ...args: RequestHandler[]) => IRouteResult;
   delete: (path: string, options: IOptions, ...args: RequestHandler[]) => IRouteResult;
+  template: (template: ITemplateRoute, ...args: RequestHandler[]) => IRouteResult;
 }
 
 export interface ISwaggerBaseDefinition {
@@ -67,9 +67,14 @@ export interface IDocsOptions {
   summary?: string;
 }
 
+export interface ITemplateRoute extends IDocsOptions {
+  method: HttpMethod;
+  path: string;
+}
+
 export interface IExecOptions extends IDocsOptions {
   docs?: boolean;
-  method: IMethod;
+  method: HttpMethod;
   path: string;
   prefix?: string;
 }
