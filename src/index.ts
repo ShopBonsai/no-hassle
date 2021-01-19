@@ -57,4 +57,5 @@ export const isValidationError = (error: object): boolean => isCelebrate(error);
 
 export * from './swagger/errors';
 export * from './constants';
+export * from './interfaces';
 export { IOptions, ITemplateRoute, getSwagger, validateValue, validateSchema };
