@@ -23,7 +23,7 @@ export const getParameters = (swagger: ISwaggerDefinition, input?: IInput) => {
       name: definition,
       required: true,
       schema: {
-        $ref: `#/definitions/${definition}`,
+        $ref: `#/components/${definition}`,
       },
     });
   }

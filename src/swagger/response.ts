@@ -10,7 +10,7 @@ export const getObjectDefinition = (
     return {
       ...result,
       [key]: {
-        $ref: `#/definitions/${definition}`,
+        $ref: `#/components/${definition}`,
       },
     };
   }, {});
@@ -27,7 +27,7 @@ export const getSingleDefinition = (swagger: ISwaggerDefinition, value: ISchema)
   const definition = getDefinition(swagger, value, 'Result');
   return {
     schema: {
-      $ref: `#/definitions/${definition}`,
+      $ref: `#/components/${definition}`,
     },
   };
 };
@@ -40,19 +40,19 @@ export const getResponses = (swagger: ISwaggerDefinition, output?: IOutput) => {
     400: {
       description: '400 - Bad request',
       schema: {
-        $ref: '#/definitions/BadRequestError',
+        $ref: '#/components/BadRequestError',
       },
     },
     401: {
       description: '401 - Unauthorized',
       schema: {
-        $ref: '#/definitions/UnauthorizedError',
+        $ref: '#/components/UnauthorizedError',
       },
     },
     404: {
       description: '404 - Not found',
       schema: {
-        $ref: '#/definitions/NotFoundError',
+        $ref: '#/components/NotFoundError',
       },
     },
     405: {
@@ -61,7 +61,7 @@ export const getResponses = (swagger: ISwaggerDefinition, output?: IOutput) => {
     '5XX': {
       description: '500 - Unknown error',
       schema: {
-        $ref: '#/definitions/UnknownError',
+        $ref: '#/components/UnknownError',
       },
     },
   };
@@ -69,7 +69,8 @@ export const getResponses = (swagger: ISwaggerDefinition, output?: IOutput) => {
   if (output) {
     Object.entries(output).forEach(([key, value]) => {
       // Handle objects wrapping joi schema
-      if (!value.isJoi && value instanceof Object) {
+      // TODO: Fix !value.isJoi!!!
+      if (value instanceof Object) {
         Object.assign(responses[key], getObjectDefinition(swagger, value));
       } else {
         Object.assign(responses[key], getSingleDefinition(swagger, value as ISchema));

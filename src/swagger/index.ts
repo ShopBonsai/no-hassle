@@ -7,7 +7,7 @@ import { getAuthentication } from './auth';
 import { HttpMethod } from '../constants';
 
 enum SwaggerDefaultConfig {
-  VERSION = '2.0',
+  VERSION = '3.0.1',
   HOST = '',
 }
 
@@ -16,10 +16,9 @@ const globalSwagger: ISwaggerDefinition = {
   ...baseDefinition({
     title: 'Default swagger title',
     description: 'The API is documented here',
-    host: 'localhost:3000',
-    basePath: '/',
+    servers: [{ url: 'localhost:3000' }],
     version: '1.0',
-    apiVersion: '2.0',
+    apiVersion: '3.0.1',
     contact: { email: 'developers@shopbonsai.com' },
   }),
 };
@@ -61,7 +60,7 @@ export const generateSwagger = (path: string, method: HttpMethod, options: IDocs
 export const getSwagger = (options: ISwaggerOptions = {}): ISwaggerDefinition => {
   const {
     apiVersion = SwaggerDefaultConfig.VERSION,
-    host = SwaggerDefaultConfig.HOST,
+    servers = [{ url: SwaggerDefaultConfig.HOST }],
     auth,
     ...otherOptions
   } = options;
@@ -70,7 +69,7 @@ export const getSwagger = (options: ISwaggerOptions = {}): ISwaggerDefinition =>
   const result: ISwaggerDefinition = {
     ...globalSwagger,
     ...authentication,
-    host,
+    servers,
     info: {
       ...globalSwagger.info,
       ...otherOptions,

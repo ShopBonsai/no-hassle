@@ -22,11 +22,11 @@ export const getDefinition = (
   const name = `${definition}${type}`;
 
   // Return already existing definition
-  if (swagger.definitions.hasOwnProperty(name)) return name;
+  if (swagger.components.hasOwnProperty(name)) return name;
 
   // Add new definition
-  const result = j2s(values, swagger.definitions);
-  updateSwagger('definitions', { [name]: result.swagger });
+  const result = j2s(values, swagger.components);
+  updateSwagger('components', { [name]: result.swagger });
 
   return name;
 };
