@@ -170,8 +170,8 @@ Object {
     "contact": Object {
       "email": "developers@shopbonsai.com",
     },
-    "description": "Widget API",
-    "title": "Widget API",
+    "description": "Test API description",
+    "title": "Test API",
     "version": "1.0.0",
   },
   "openapi": "3.0.1",
