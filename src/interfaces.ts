@@ -56,7 +56,6 @@ export type IOutput = {
 export interface IDocsOptions {
   input?: IInput;
   output?: IOutput;
-  contentTypes?: string[];
   schemaOptions?: object;
   tags?: string[];
   description?: string;

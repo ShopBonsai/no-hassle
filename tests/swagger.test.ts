@@ -1,4 +1,7 @@
-import { getSwagger } from '../src';
+import * as express from 'express';
+
+import { getSwagger, router } from '../src';
+import { productSchema } from './mocks/product';
 
 describe('Swagger generation', () => {
   describe('getSwagger', () => {
@@ -14,16 +17,26 @@ describe('Swagger generation', () => {
     });
   });
 
-  describe('addRoute', () => {
-    const swagger = getSwagger({
-      version: '1.0.0',
-      title: 'Test API',
-      description: 'Test API description',
-      servers: [{ url: 'https://myapi.org' }],
-    });
-    console.log('swagger: ', swagger);
+  fdescribe('addRoute', () => {
+    const app = express();
 
     it('Should succesfully generate swagger route', () => {
+      router.use(app, '/products').post('/', {
+        description: 'Create new product',
+        tags: ['Products'],
+        input: {
+          body: productSchema,
+        },
+      });
+
+      const swagger = getSwagger({
+        version: '1.0.0',
+        title: 'Test API',
+        description: 'Test API description',
+        servers: [{ url: 'https://myapi.org' }],
+      });
+
+      console.log('swagger: ', JSON.stringify(swagger));
       expect(1).toEqual(1);
     });
   });

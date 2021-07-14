@@ -3,30 +3,35 @@ import { propOr } from 'ramda';
 const j2s = require('joi-to-swagger');
 
 import { ISchema, ISwaggerDefinition } from '../interfaces';
-import { updateSwagger } from '../swagger';
+import { updateSwaggerSchemas } from '../swagger';
 
 export const getDefinition = (
   swagger: ISwaggerDefinition,
   values: ISchema | { [key: string]: ISchema },
   type: 'Input' | 'Result',
-): string => {
-  const { _meta: meta } = values;
+  ): string => {
+    console.log('values: ', values);
+    const { _meta: meta = [] } = values;
 
-  // Try to get 'definition' metadata from Joi
-  const fallback = Math.random()
+    // Try to get 'definition' metadata from Joi
+    const fallback = Math.random()
     .toString(36)
     .substr(2, 9);
-  const definition = propOr(fallback, 'definition', meta[0]);
 
-  // Concatenate definition with type
-  const name = `${definition}${type}`;
+    // TODO: Fix below to access meta again as it's currently undefined!
+    const definition = propOr(fallback, 'definition', meta[0]);
 
-  // Return already existing definition
-  if (swagger.components.hasOwnProperty(name)) return name;
+    // Concatenate definition with type
+    const name = `${definition}${type}`;
 
+    // Return already existing definition
+    if (swagger.components.schemas.hasOwnProperty(name)) return name;
+
+    console.log('swagger: ', swagger);
   // Add new definition
-  const result = j2s(values, swagger.components);
-  updateSwagger('components', { [name]: result.swagger });
+  const result = j2s(values, swagger.components.schemas);
+  console.log('result: ', result);
+  updateSwaggerSchemas({ [name]: result.swagger });
 
   return name;
 };

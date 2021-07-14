@@ -5,6 +5,7 @@ import { getParameters } from './parameter';
 import { getResponses } from './response';
 import { getAuthentication } from './auth';
 import { HttpMethod } from '../constants';
+import { getBody } from './body';
 
 enum SwaggerDefaultConfig {
   VERSION = '3.0.1',
@@ -26,27 +27,25 @@ const globalSwagger: ISwaggerDefinition = {
 export const updateSwagger = (key: string, values: object) =>
   Object.assign(globalSwagger[key], values);
 
+export const updateSwaggerSchemas = (values: object) => {
+  Object.assign(globalSwagger.components.schemas, values);
+};
+
 export const generateSwagger = (path: string, method: HttpMethod, options: IDocsOptions) => {
-  const {
-    input,
-    output,
-    contentTypes = ['application/json'],
-    summary,
-    description,
-    tags = [],
-  } = options;
+  const { input, output, summary, description, tags = [] } = options;
+  const requestBody = getBody(globalSwagger, input);
 
   const cleanedPath = cleanPath(path);
 
   const result = {
     [method]: {
       tags,
-      produces: contentTypes,
-      parameters: getParameters(globalSwagger, input),
-      responses: getResponses(globalSwagger, output),
       // optional
       ...(summary && { summary }),
       ...(description && { description }),
+      ...(requestBody && { requestBody }),
+      parameters: getParameters(input),
+      responses: getResponses(globalSwagger, output),
     },
   };
   // If path already exists (other method for example)

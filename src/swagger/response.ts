@@ -10,7 +10,7 @@ export const getObjectDefinition = (
     return {
       ...result,
       [key]: {
-        $ref: `#/components/${definition}`,
+        $ref: `#/components/schemas/${definition}`,
       },
     };
   }, {});
@@ -27,7 +27,7 @@ export const getSingleDefinition = (swagger: ISwaggerDefinition, value: ISchema)
   const definition = getDefinition(swagger, value, 'Result');
   return {
     schema: {
-      $ref: `#/components/${definition}`,
+      $ref: `#/components/schemas/${definition}`,
     },
   };
 };
@@ -36,32 +36,50 @@ export const getResponses = (swagger: ISwaggerDefinition, output?: IOutput) => {
   const responses = {
     200: {
       description: 'Success',
+      content: {},
     },
     400: {
       description: '400 - Bad request',
-      schema: {
-        $ref: '#/components/BadRequestError',
+      content: {
+        'application/json': {
+          schema: {
+            $ref: '#/components/schemas/BadRequestError',
+          },
+        },
       },
     },
     401: {
       description: '401 - Unauthorized',
-      schema: {
-        $ref: '#/components/UnauthorizedError',
+      content: {
+        'application/json': {
+          schema: {
+            $ref: '#/components/schemas/UnauthorizedError',
+          },
+        },
       },
     },
     404: {
       description: '404 - Not found',
-      schema: {
-        $ref: '#/components/NotFoundError',
+      content: {
+        'application/json': {
+          schema: {
+            $ref: '#/components/schemas/NotFoundError',
+          },
+        },
       },
     },
     405: {
       description: '405 - Validation exception',
+      content: {},
     },
     '5XX': {
       description: '500 - Unknown error',
-      schema: {
-        $ref: '#/components/UnknownError',
+      content: {
+        'application/json': {
+          schema: {
+            $ref: '#/components/schemas/UnknownError',
+          },
+        },
       },
     },
   };

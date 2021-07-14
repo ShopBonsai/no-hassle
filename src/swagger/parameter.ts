@@ -1,12 +1,11 @@
 const j2s = require('joi-to-swagger');
 
-import { IInput, ISwaggerDefinition, ISchema } from '../interfaces';
-import { getDefinition } from './definition';
+import { IInput, ISchema } from '../interfaces';
 
-export const getParameters = (swagger: ISwaggerDefinition, input?: IInput) => {
+export const getParameters = (input?: IInput) => {
   if (!input) return [];
 
-  const { body, query, params } = input;
+  const { query, params } = input;
   const result: {
     in: string;
     name: string;
@@ -15,18 +14,6 @@ export const getParameters = (swagger: ISwaggerDefinition, input?: IInput) => {
       $ref: string;
     };
   }[] = [];
-
-  if (body) {
-    const definition = getDefinition(swagger, body, 'Input');
-    result.push({
-      in: 'body',
-      name: definition,
-      required: true,
-      schema: {
-        $ref: `#/components/${definition}`,
-      },
-    });
-  }
 
   if (query) {
     const { swagger } = j2s(query as ISchema);
