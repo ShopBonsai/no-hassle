@@ -16,7 +16,7 @@
     "removeComments": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-
+    "skipLibCheck": true,
     "paths": {
       "*": [
         "node_modules/*",
