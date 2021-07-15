@@ -1,5 +1,408 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Swagger generation addRoute Should succesfully generate swagger route 1`] = `
+Object {
+  "components": Object {
+    "schemas": Object {
+      "8s2h35vjiResult": Object {
+        "additionalProperties": false,
+        "properties": Object {
+          "detail": Object {
+            "example": "Fatal issue",
+            "nullable": true,
+            "type": "string",
+          },
+          "status": Object {
+            "example": 500,
+            "format": "float",
+            "type": "number",
+          },
+          "title": Object {
+            "example": "Unknown error",
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "status",
+          "detail",
+          "title",
+        ],
+        "type": "object",
+      },
+      "BadRequestError": Object {
+        "additionalProperties": false,
+        "description": "Provided input is invalid",
+        "properties": Object {
+          "errors": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "example": Object {
+                "detail": "",
+                "status": 400,
+                "title": "Bad input request",
+              },
+              "properties": Object {
+                "detail": Object {
+                  "example": "Fatal issue",
+                  "nullable": true,
+                  "type": "string",
+                },
+                "status": Object {
+                  "example": 500,
+                  "format": "float",
+                  "type": "number",
+                },
+                "title": Object {
+                  "example": "Unknown error",
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "status",
+                "detail",
+                "title",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+        },
+        "type": "object",
+      },
+      "NotFoundError": Object {
+        "additionalProperties": false,
+        "description": "Not Found",
+        "properties": Object {
+          "errors": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "example": Object {
+                "detail": "",
+                "status": 404,
+                "title": "Not Found",
+              },
+              "properties": Object {
+                "detail": Object {
+                  "example": "Fatal issue",
+                  "nullable": true,
+                  "type": "string",
+                },
+                "status": Object {
+                  "example": 500,
+                  "format": "float",
+                  "type": "number",
+                },
+                "title": Object {
+                  "example": "Unknown error",
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "status",
+                "detail",
+                "title",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+        },
+        "type": "object",
+      },
+      "UnauthorizedError": Object {
+        "additionalProperties": false,
+        "description": "Authentication information is missing or invalid",
+        "properties": Object {
+          "errors": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "example": Object {
+                "detail": "",
+                "status": 401,
+                "title": "Authentication information is missing or invalid",
+              },
+              "properties": Object {
+                "detail": Object {
+                  "example": "Fatal issue",
+                  "nullable": true,
+                  "type": "string",
+                },
+                "status": Object {
+                  "example": 500,
+                  "format": "float",
+                  "type": "number",
+                },
+                "title": Object {
+                  "example": "Unknown error",
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "status",
+                "detail",
+                "title",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+        },
+        "type": "object",
+      },
+      "UnknownError": Object {
+        "additionalProperties": false,
+        "description": "Unknown error",
+        "properties": Object {
+          "errors": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "example": Object {
+                "detail": "",
+                "status": 500,
+                "title": "Unknown error",
+              },
+              "properties": Object {
+                "detail": Object {
+                  "example": "Fatal issue",
+                  "nullable": true,
+                  "type": "string",
+                },
+                "status": Object {
+                  "example": 500,
+                  "format": "float",
+                  "type": "number",
+                },
+                "title": Object {
+                  "example": "Unknown error",
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "status",
+                "detail",
+                "title",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+        },
+        "type": "object",
+      },
+      "kr0jt3p1wResult": Object {
+        "items": Object {
+          "additionalProperties": false,
+          "properties": Object {
+            "detail": Object {
+              "example": "Fatal issue",
+              "nullable": true,
+              "type": "string",
+            },
+            "status": Object {
+              "example": 500,
+              "format": "float",
+              "type": "number",
+            },
+            "title": Object {
+              "example": "Unknown error",
+              "type": "string",
+            },
+          },
+          "required": Array [
+            "status",
+            "detail",
+            "title",
+          ],
+          "type": "object",
+        },
+        "type": "array",
+      },
+      "universalBrandInput": Object {
+        "additionalProperties": false,
+        "properties": Object {
+          "country": Object {
+            "description": "Country code.",
+            "example": "US",
+            "type": "string",
+          },
+          "description": Object {
+            "description": "Description of the brand.",
+            "example": "This brand is amazing.",
+            "nullable": true,
+            "type": "string",
+          },
+          "logo": Object {
+            "description": "Brand logo image.",
+            "example": "http://images.ctfassets.net/hhq3zxylfx2l/H5laGR7EAeMQEeYqEmyGm/06a443581102ea4e52ea8294f8723790/Bonsai_image.jpg",
+            "nullable": true,
+            "type": "string",
+          },
+          "name": Object {
+            "description": "Brand name.",
+            "example": "Virgin Club",
+            "type": "string",
+          },
+          "public_id": Object {
+            "description": "Brand public identifier.",
+            "example": "1234asfsdfhwadasd2v",
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "public_id",
+          "name",
+        ],
+        "type": "object",
+      },
+      "universalBrandResult": Object {
+        "additionalProperties": false,
+        "properties": Object {
+          "country": Object {
+            "description": "Country code.",
+            "example": "US",
+            "type": "string",
+          },
+          "description": Object {
+            "description": "Description of the brand.",
+            "example": "This brand is amazing.",
+            "nullable": true,
+            "type": "string",
+          },
+          "logo": Object {
+            "description": "Brand logo image.",
+            "example": "http://images.ctfassets.net/hhq3zxylfx2l/H5laGR7EAeMQEeYqEmyGm/06a443581102ea4e52ea8294f8723790/Bonsai_image.jpg",
+            "nullable": true,
+            "type": "string",
+          },
+          "name": Object {
+            "description": "Brand name.",
+            "example": "Virgin Club",
+            "type": "string",
+          },
+          "public_id": Object {
+            "description": "Brand public identifier.",
+            "example": "1234asfsdfhwadasd2v",
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "public_id",
+          "name",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "info": Object {
+    "contact": Object {
+      "email": "developers@shopbonsai.com",
+    },
+    "description": "Test API description",
+    "title": "Test API",
+    "version": "1.0.0",
+  },
+  "openapi": "3.0.1",
+  "paths": Object {
+    "/products": Object {
+      "post": Object {
+        "description": "Create new product",
+        "parameters": Array [],
+        "requestBody": Object {
+          "content": Object {
+            "application/json": Object {
+              "schema": Object {
+                "$ref": "#/components/schemas/universalBrandInput",
+              },
+            },
+          },
+          "required": true,
+        },
+        "responses": Object {
+          "200": Object {
+            "content": Object {
+              "application/json": Object {
+                "schema": Object {
+                  "$ref": "#/components/schemas/universalBrandResult",
+                },
+              },
+            },
+            "description": "Success",
+          },
+          "400": Object {
+            "content": Object {
+              "application/json": Object {
+                "schema": Object {
+                  "properties": Object {
+                    "data": Object {
+                      "$ref": "#/components/schemas/universalBrandResult",
+                    },
+                    "error": Object {
+                      "$ref": "#/components/schemas/8s2h35vjiResult",
+                    },
+                  },
+                  "type": "object",
+                },
+              },
+            },
+            "description": "400 - Bad request",
+          },
+          "401": Object {
+            "content": Object {
+              "application/json": Object {
+                "schema": Object {
+                  "properties": Object {
+                    "data": Object {
+                      "$ref": "#/components/schemas/universalBrandResult",
+                    },
+                    "errors": Object {
+                      "$ref": "#/components/schemas/kr0jt3p1wResult",
+                    },
+                  },
+                  "type": "object",
+                },
+              },
+            },
+            "description": "401 - Unauthorized",
+          },
+          "404": Object {
+            "content": Object {
+              "application/json": Object {
+                "schema": Object {
+                  "$ref": "#/components/schemas/NotFoundError",
+                },
+              },
+            },
+            "description": "404 - Not found",
+          },
+          "405": Object {
+            "content": Object {},
+            "description": "405 - Validation exception",
+          },
+          "5XX": Object {
+            "content": Object {
+              "application/json": Object {
+                "schema": Object {
+                  "$ref": "#/components/schemas/UnknownError",
+                },
+              },
+            },
+            "description": "500 - Unknown error",
+          },
+        },
+        "tags": Array [
+          "Products",
+        ],
+      },
+    },
+  },
+  "servers": Array [
+    Object {
+      "url": "https://myapi.org",
+    },
+  ],
+}
+`;
+
 exports[`Swagger generation getSwagger Should return autogenerated default Swagger definition 1`] = `
 Object {
   "components": Object {

@@ -83,6 +83,4 @@ export interface IValidateResponse {
   errors?: Joi.ValidationErrorItem[];
 }
 
-export type ISchema = Joi.Schema & {
-  _meta?: [];
-};
+export type ISchema = Joi.AnySchema;

@@ -1,6 +1,7 @@
 import * as express from 'express';
+import * as Joi from 'joi';
 
-import { getSwagger, router } from '../src';
+import { errorSchema, getSwagger, router } from '../src';
 import { productSchema } from './mocks/product';
 
 describe('Swagger generation', () => {
@@ -17,7 +18,7 @@ describe('Swagger generation', () => {
     });
   });
 
-  fdescribe('addRoute', () => {
+  describe('addRoute', () => {
     const app = express();
 
     it('Should succesfully generate swagger route', () => {
@@ -26,6 +27,17 @@ describe('Swagger generation', () => {
         tags: ['Products'],
         input: {
           body: productSchema,
+        },
+        output: {
+          200: productSchema, // Direct schema - not wrapped as object
+          400: {
+            data: productSchema,
+            error: errorSchema, // Single error
+          },
+          401: {
+            data: productSchema,
+            errors: Joi.array().items(errorSchema), // Array of errors
+          },
         },
       });
 
@@ -36,8 +48,7 @@ describe('Swagger generation', () => {
         servers: [{ url: 'https://myapi.org' }],
       });
 
-      console.log('swagger: ', JSON.stringify(swagger));
-      expect(1).toEqual(1);
+      expect(swagger).toMatchSnapshot();
     });
   });
 });

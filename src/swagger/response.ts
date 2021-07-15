@@ -1,4 +1,4 @@
-import { IOutput, ISwaggerDefinition, ISchema } from '../interfaces';
+import { IOutput, ISchema, ISwaggerDefinition } from '../interfaces';
 import { getDefinition } from './definition';
 
 export const getObjectDefinition = (
@@ -16,9 +16,13 @@ export const getObjectDefinition = (
   }, {});
 
   return {
-    schema: {
-      properties,
-      type: 'object',
+    content: {
+      'application/json': {
+        schema: {
+          properties,
+          type: 'object',
+        },
+      },
     },
   };
 };
@@ -26,8 +30,12 @@ export const getObjectDefinition = (
 export const getSingleDefinition = (swagger: ISwaggerDefinition, value: ISchema) => {
   const definition = getDefinition(swagger, value, 'Result');
   return {
-    schema: {
-      $ref: `#/components/schemas/${definition}`,
+    content: {
+      'application/json': {
+        schema: {
+          $ref: `#/components/schemas/${definition}`,
+        },
+      },
     },
   };
 };
@@ -86,10 +94,9 @@ export const getResponses = (swagger: ISwaggerDefinition, output?: IOutput) => {
 
   if (output) {
     Object.entries(output).forEach(([key, value]) => {
-      // Handle objects wrapping joi schema
-      // TODO: Fix !value.isJoi!!!
-      if (value instanceof Object) {
-        Object.assign(responses[key], getObjectDefinition(swagger, value));
+      // Handle objects wrapping joi schema - use random method that exists on Joi value only
+      if (!value.hasOwnProperty('$_terms') && value instanceof Object) {
+        Object.assign(responses[key], getObjectDefinition(swagger, value as any));
       } else {
         Object.assign(responses[key], getSingleDefinition(swagger, value as ISchema));
       }
