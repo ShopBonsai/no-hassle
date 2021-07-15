@@ -4,31 +4,6 @@ exports[`Swagger generation addRoute Should succesfully generate swagger route 1
 Object {
   "components": Object {
     "schemas": Object {
-      "8s2h35vjiResult": Object {
-        "additionalProperties": false,
-        "properties": Object {
-          "detail": Object {
-            "example": "Fatal issue",
-            "nullable": true,
-            "type": "string",
-          },
-          "status": Object {
-            "example": 500,
-            "format": "float",
-            "type": "number",
-          },
-          "title": Object {
-            "example": "Unknown error",
-            "type": "string",
-          },
-        },
-        "required": Array [
-          "status",
-          "detail",
-          "title",
-        ],
-        "type": "object",
-      },
       "BadRequestError": Object {
         "additionalProperties": false,
         "description": "Provided input is invalid",
@@ -189,35 +164,50 @@ Object {
         },
         "type": "object",
       },
-      "kr0jt3p1wResult": Object {
+      "apiErrorResult": Object {
+        "additionalProperties": false,
+        "properties": Object {
+          "message": Object {
+            "description": "Error message.",
+            "example": "My message",
+            "type": "string",
+          },
+          "name": Object {
+            "description": "Error name.",
+            "example": "Specific Error",
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "message",
+          "name",
+        ],
+        "type": "object",
+      },
+      "errorsResult": Object {
         "items": Object {
           "additionalProperties": false,
           "properties": Object {
-            "detail": Object {
-              "example": "Fatal issue",
-              "nullable": true,
+            "message": Object {
+              "description": "Error message.",
+              "example": "My message",
               "type": "string",
             },
-            "status": Object {
-              "example": 500,
-              "format": "float",
-              "type": "number",
-            },
-            "title": Object {
-              "example": "Unknown error",
+            "name": Object {
+              "description": "Error name.",
+              "example": "Specific Error",
               "type": "string",
             },
           },
           "required": Array [
-            "status",
-            "detail",
-            "title",
+            "message",
+            "name",
           ],
           "type": "object",
         },
         "type": "array",
       },
-      "universalBrandInput": Object {
+      "productInput": Object {
         "additionalProperties": false,
         "properties": Object {
           "country": Object {
@@ -254,7 +244,7 @@ Object {
         ],
         "type": "object",
       },
-      "universalBrandResult": Object {
+      "productResult": Object {
         "additionalProperties": false,
         "properties": Object {
           "country": Object {
@@ -287,6 +277,20 @@ Object {
         },
         "required": Array [
           "public_id",
+          "name",
+        ],
+        "type": "object",
+      },
+      "userResult": Object {
+        "additionalProperties": false,
+        "properties": Object {
+          "name": Object {
+            "description": "User name.",
+            "example": "Rudolf",
+            "type": "string",
+          },
+        },
+        "required": Array [
           "name",
         ],
         "type": "object",
@@ -303,15 +307,54 @@ Object {
   },
   "openapi": "3.0.1",
   "paths": Object {
-    "/products": Object {
+    "/products/{id}": Object {
       "post": Object {
-        "description": "Create new product",
-        "parameters": Array [],
+        "description": "Updates a product",
+        "parameters": Array [
+          Object {
+            "description": undefined,
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": Object {
+              "type": "string",
+            },
+          },
+          Object {
+            "description": "Name to pass along",
+            "in": "query",
+            "name": "name",
+            "required": undefined,
+            "schema": Object {
+              "type": "string",
+            },
+          },
+          Object {
+            "description": undefined,
+            "in": "query",
+            "name": "email",
+            "required": undefined,
+            "schema": Object {
+              "type": "string",
+            },
+          },
+          Object {
+            "description": undefined,
+            "in": "query",
+            "name": "publicId",
+            "required": undefined,
+            "schema": Object {
+              "format": "float",
+              "minimum": 2,
+              "type": "number",
+            },
+          },
+        ],
         "requestBody": Object {
           "content": Object {
             "application/json": Object {
               "schema": Object {
-                "$ref": "#/components/schemas/universalBrandInput",
+                "$ref": "#/components/schemas/productInput",
               },
             },
           },
@@ -322,7 +365,7 @@ Object {
             "content": Object {
               "application/json": Object {
                 "schema": Object {
-                  "$ref": "#/components/schemas/universalBrandResult",
+                  "$ref": "#/components/schemas/productResult",
                 },
               },
             },
@@ -333,11 +376,11 @@ Object {
               "application/json": Object {
                 "schema": Object {
                   "properties": Object {
-                    "data": Object {
-                      "$ref": "#/components/schemas/universalBrandResult",
-                    },
                     "error": Object {
-                      "$ref": "#/components/schemas/8s2h35vjiResult",
+                      "$ref": "#/components/schemas/apiErrorResult",
+                    },
+                    "user": Object {
+                      "$ref": "#/components/schemas/userResult",
                     },
                   },
                   "type": "object",
@@ -352,10 +395,10 @@ Object {
                 "schema": Object {
                   "properties": Object {
                     "data": Object {
-                      "$ref": "#/components/schemas/universalBrandResult",
+                      "$ref": "#/components/schemas/productResult",
                     },
                     "errors": Object {
-                      "$ref": "#/components/schemas/kr0jt3p1wResult",
+                      "$ref": "#/components/schemas/errorsResult",
                     },
                   },
                   "type": "object",

@@ -21,4 +21,4 @@ export const productSchema = Joi.object({
     )
     .description('Brand logo image.')
     .allow(null),
-}).meta({ definition: 'universalBrand' });
+}).meta({ definition: 'product' });

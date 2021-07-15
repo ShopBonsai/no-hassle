@@ -1,8 +1,10 @@
 import * as express from 'express';
 import * as Joi from 'joi';
 
-import { errorSchema, getSwagger, router } from '../src';
+import { getSwagger, router } from '../src';
 import { productSchema } from './mocks/product';
+import { userSchema } from './mocks/user';
+import { errorSchema } from './mocks/error';
 
 describe('Swagger generation', () => {
   describe('getSwagger', () => {
@@ -22,21 +24,35 @@ describe('Swagger generation', () => {
     const app = express();
 
     it('Should succesfully generate swagger route', () => {
-      router.use(app, '/products').post('/', {
-        description: 'Create new product',
+      router.use(app, '/products/:id').post('/', {
+        description: 'Updates a product',
         tags: ['Products'],
         input: {
           body: productSchema,
+          params: {
+            id: Joi.string(),
+          },
+          query: {
+            name: Joi.string()
+              .description('Name to pass along')
+              .required(),
+            email: Joi.string(),
+            publicId: Joi.number()
+              .min(2.0)
+              .required(),
+          },
         },
         output: {
           200: productSchema, // Direct schema - not wrapped as object
           400: {
-            data: productSchema,
             error: errorSchema, // Single error
+            user: userSchema,
           },
           401: {
             data: productSchema,
-            errors: Joi.array().items(errorSchema), // Array of errors
+            errors: Joi.array() // TODO: Wrapped Joi.array should reuse the definition of the items
+              .items(errorSchema)
+              .meta({ definition: 'errors' }), // Array of errors
           },
         },
       });
@@ -47,7 +63,6 @@ describe('Swagger generation', () => {
         description: 'Test API description',
         servers: [{ url: 'https://myapi.org' }],
       });
-
       expect(swagger).toMatchSnapshot();
     });
   });
