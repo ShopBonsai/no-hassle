@@ -72,5 +72,6 @@
   "bugs": {
     "url": "https://github.com/knor-el-snor/no-hassle/issues"
   },
-  "homepage": "https://github.com/knor-el-snor/no-hassle/tree/master/packages/core#readme"
+  "homepage": "https://github.com/knor-el-snor/no-hassle/tree/master/packages/core#readme",
+  "packageManager": "yarn@3.1.0-rc.8"
 }
