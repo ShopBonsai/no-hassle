@@ -3,10 +3,9 @@ enum AuthenticationType {
 }
 
 const basicConfig = {
-  securitySchemes: {
+  securityDefinitions: {
     basicAuth: {
-      type: 'http',
-      scheme: 'basic',
+      type: 'basic',
     },
   },
   security: [{ basicAuth: [] }],

@@ -1,38 +1,30 @@
 const j2s = require('joi-to-swagger');
 
-import { IInput, ISchema } from '../interfaces';
+import { IInput, ISwaggerDefinition, ISchema } from '../interfaces';
+import { getDefinition } from './definition';
 
-export const getParameters = (input?: IInput) => {
+export const getParameters = (swagger: ISwaggerDefinition, input?: IInput) => {
   if (!input) return [];
 
-  const { query, params } = input;
+  const { body, query, params } = input;
   const result: {
     in: string;
     name: string;
-    required?: boolean;
-    description?: string;
+    required: boolean;
     schema: {
-      type: string;
+      $ref: string;
     };
   }[] = [];
 
-  if (params) {
-    const { swagger } = j2s(params as ISchema);
-    const { properties } = swagger;
-
-    Object.keys(properties).forEach((key) => {
-      const { description, required, ...schemaProperties } = properties[key];
-
-      result.push({
-        in: 'path',
-        name: key,
-        // tslint:disable-next-line: object-shorthand-properties-first
-        description,
-        required: true,
-        schema: {
-          ...schemaProperties,
-        },
-      });
+  if (body) {
+    const definition = getDefinition(swagger, body, 'Input');
+    result.push({
+      in: 'body',
+      name: definition,
+      required: true,
+      schema: {
+        $ref: `#/definitions/${definition}`,
+      },
     });
   }
 
@@ -41,18 +33,24 @@ export const getParameters = (input?: IInput) => {
     const { properties } = swagger;
 
     Object.keys(properties).forEach((key) => {
-      const { description, required, ...schemaProperties } = properties[key];
-
       result.push({
         in: 'query',
         name: key,
-        // tslint:disable-next-line: object-shorthand-properties-first
-        description,
-        // tslint:disable-next-line: object-shorthand-properties-first
-        required,
-        schema: {
-          ...schemaProperties,
-        },
+        ...properties[key],
+      });
+    });
+  }
+
+  if (params) {
+    const { swagger } = j2s(params as ISchema);
+    const { properties } = swagger;
+
+    Object.keys(properties).forEach((key) => {
+      result.push({
+        in: 'path',
+        name: key,
+        required: true,
+        ...properties[key],
       });
     });
   }
