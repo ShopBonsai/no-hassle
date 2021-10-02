@@ -1,4 +1,4 @@
-import * as Joi from '@hapi/joi';
+import * as Joi from 'joi';
 import { Request, Response, NextFunction } from 'express';
 import { celebrate } from 'celebrate';
 
@@ -12,10 +12,10 @@ export const validateSchema = (schema: object, options: object = {}) => {
 
 export const validateValue = <T>(
   value: T,
-  schema: Joi.SchemaLike,
+  schema: Joi.AnySchema,
   options: Joi.ValidationOptions = { abortEarly: false },
 ): IValidateResponse => {
-  const result = Joi.validate(value, schema, options);
+  const result = schema.validate(value, options);
   return result.error
     ? { isValid: false, errors: result.error.details }
     : { isValid: true, errors: [] };

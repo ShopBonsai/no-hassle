@@ -1,5 +1,15 @@
-import * as Joi from '@hapi/joi';
+import * as Joi from 'joi';
 import { RequestHandler } from 'express';
+import {
+  ComponentsObject,
+  ExternalDocumentationObject,
+  InfoObject,
+  PathsObject,
+  SecurityRequirementObject,
+  ServerObject,
+  TagObject,
+} from 'openapi3-ts';
+
 import { HttpMethod } from './constants';
 
 export interface IRouteResult {
@@ -11,40 +21,26 @@ export interface IRouteResult {
   template: (template: ITemplateRoute, ...args: RequestHandler[]) => IRouteResult;
 }
 
-export interface ISwaggerBaseDefinition {
-  title: string;
-  description: string;
-  host: string;
-  basePath: string;
-  contact?: { email: string };
-  version?: string;
-  apiVersion?: string;
-}
-
 export interface ISwaggerDefinition {
-  swagger: string;
-  host: string;
-  basePath: string;
-  info: {
-    description: string;
-    version: string;
-    title: string;
-    contact: {
-      email: string;
-    };
-  };
-  paths: {};
-  definitions: {};
+  openapi: string;
+  info: InfoObject;
+  servers?: ServerObject[];
+  paths: PathsObject;
+  components?: ComponentsObject;
+  security?: SecurityRequirementObject[];
+  tags?: TagObject[];
+  externalDocs?: ExternalDocumentationObject;
 }
 
+// Default options passed along when initiating Swagger in project
 export interface ISwaggerOptions {
   title?: string;
   description?: string;
-  host?: string;
-  basePath?: string;
-  apiVersion?: '2.0' | '3.0';
+  servers?: ServerObject[];
+  apiVersion?: '3.0';
   version?: string;
   auth?: 'basic';
+  termsOfService?: string;
 }
 
 export interface IInput {
@@ -60,7 +56,6 @@ export type IOutput = {
 export interface IDocsOptions {
   input?: IInput;
   output?: IOutput;
-  contentTypes?: string[];
   schemaOptions?: object;
   tags?: string[];
   description?: string;
@@ -88,6 +83,4 @@ export interface IValidateResponse {
   errors?: Joi.ValidationErrorItem[];
 }
 
-export type ISchema = Joi.Schema & {
-  _meta?: [];
-};
+export type ISchema = Joi.AnySchema;

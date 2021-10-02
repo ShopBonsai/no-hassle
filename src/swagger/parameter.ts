@@ -1,30 +1,38 @@
 const j2s = require('joi-to-swagger');
 
-import { IInput, ISwaggerDefinition, ISchema } from '../interfaces';
-import { getDefinition } from './definition';
+import { IInput, ISchema } from '../interfaces';
 
-export const getParameters = (swagger: ISwaggerDefinition, input?: IInput) => {
+export const getParameters = (input?: IInput) => {
   if (!input) return [];
 
-  const { body, query, params } = input;
+  const { query, params } = input;
   const result: {
     in: string;
     name: string;
-    required: boolean;
+    required?: boolean;
+    description?: string;
     schema: {
-      $ref: string;
+      type: string;
     };
   }[] = [];
 
-  if (body) {
-    const definition = getDefinition(swagger, body, 'Input');
-    result.push({
-      in: 'body',
-      name: definition,
-      required: true,
-      schema: {
-        $ref: `#/definitions/${definition}`,
-      },
+  if (params) {
+    const { swagger } = j2s(params as ISchema);
+    const { properties } = swagger;
+
+    Object.keys(properties).forEach((key) => {
+      const { description, required, ...schemaProperties } = properties[key];
+
+      result.push({
+        in: 'path',
+        name: key,
+        // tslint:disable-next-line: object-shorthand-properties-first
+        description,
+        required: true,
+        schema: {
+          ...schemaProperties,
+        },
+      });
     });
   }
 
@@ -33,24 +41,18 @@ export const getParameters = (swagger: ISwaggerDefinition, input?: IInput) => {
     const { properties } = swagger;
 
     Object.keys(properties).forEach((key) => {
+      const { description, required, ...schemaProperties } = properties[key];
+
       result.push({
         in: 'query',
         name: key,
-        ...properties[key],
-      });
-    });
-  }
-
-  if (params) {
-    const { swagger } = j2s(params as ISchema);
-    const { properties } = swagger;
-
-    Object.keys(properties).forEach((key) => {
-      result.push({
-        in: 'path',
-        name: key,
-        required: true,
-        ...properties[key],
+        // tslint:disable-next-line: object-shorthand-properties-first
+        description,
+        // tslint:disable-next-line: object-shorthand-properties-first
+        required,
+        schema: {
+          ...schemaProperties,
+        },
       });
     });
   }
