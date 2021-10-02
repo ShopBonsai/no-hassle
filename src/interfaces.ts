@@ -1,15 +1,5 @@
-import * as Joi from 'joi';
+import * as Joi from '@hapi/joi';
 import { RequestHandler } from 'express';
-import {
-  ComponentsObject,
-  ExternalDocumentationObject,
-  InfoObject,
-  PathsObject,
-  SecurityRequirementObject,
-  ServerObject,
-  TagObject,
-} from 'openapi3-ts';
-
 import { HttpMethod } from './constants';
 
 export interface IRouteResult {
@@ -21,26 +11,40 @@ export interface IRouteResult {
   template: (template: ITemplateRoute, ...args: RequestHandler[]) => IRouteResult;
 }
 
-export interface ISwaggerDefinition {
-  openapi: string;
-  info: InfoObject;
-  servers?: ServerObject[];
-  paths: PathsObject;
-  components?: ComponentsObject;
-  security?: SecurityRequirementObject[];
-  tags?: TagObject[];
-  externalDocs?: ExternalDocumentationObject;
+export interface ISwaggerBaseDefinition {
+  title: string;
+  description: string;
+  host: string;
+  basePath: string;
+  contact?: { email: string };
+  version?: string;
+  apiVersion?: string;
 }
 
-// Default options passed along when initiating Swagger in project
+export interface ISwaggerDefinition {
+  swagger: string;
+  host: string;
+  basePath: string;
+  info: {
+    description: string;
+    version: string;
+    title: string;
+    contact: {
+      email: string;
+    };
+  };
+  paths: {};
+  definitions: {};
+}
+
 export interface ISwaggerOptions {
   title?: string;
   description?: string;
-  servers?: ServerObject[];
-  apiVersion?: '3.0';
+  host?: string;
+  basePath?: string;
+  apiVersion?: '2.0' | '3.0';
   version?: string;
   auth?: 'basic';
-  termsOfService?: string;
 }
 
 export interface IInput {
@@ -56,6 +60,7 @@ export type IOutput = {
 export interface IDocsOptions {
   input?: IInput;
   output?: IOutput;
+  contentTypes?: string[];
   schemaOptions?: object;
   tags?: string[];
   description?: string;
@@ -83,4 +88,6 @@ export interface IValidateResponse {
   errors?: Joi.ValidationErrorItem[];
 }
 
-export type ISchema = Joi.AnySchema;
+export type ISchema = Joi.Schema & {
+  _meta?: [];
+};

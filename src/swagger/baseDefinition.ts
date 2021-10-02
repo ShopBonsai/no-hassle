@@ -1,6 +1,6 @@
 const j2s = require('joi-to-swagger');
 
-import { ISwaggerDefinition } from '../interfaces';
+import { ISwaggerDefinition, ISwaggerBaseDefinition } from '../interfaces';
 import {
   unknownErrorSchema,
   badRequestErrorSchema,
@@ -11,13 +11,15 @@ import {
 export const baseDefinition = ({
   title,
   description,
-  servers,
+  host,
+  basePath,
   contact,
   version,
-  apiVersion = '3.0',
-}): ISwaggerDefinition => ({
-  servers,
-  openapi: apiVersion,
+  apiVersion = '2.0',
+}: ISwaggerBaseDefinition): ISwaggerDefinition => ({
+  host,
+  basePath,
+  swagger: apiVersion,
   info: {
     title,
     description,
@@ -25,12 +27,10 @@ export const baseDefinition = ({
     contact,
   },
   paths: {},
-  components: {
-    schemas: {
-      BadRequestError: j2s(badRequestErrorSchema).swagger,
-      NotFoundError: j2s(notFoundErrorSchema).swagger,
-      UnauthorizedError: j2s(unauthorizedErrorSchema).swagger,
-      UnknownError: j2s(unknownErrorSchema).swagger,
-    },
+  definitions: {
+    BadRequestError: j2s(badRequestErrorSchema).swagger,
+    NotFoundError: j2s(notFoundErrorSchema).swagger,
+    UnauthorizedError: j2s(unauthorizedErrorSchema).swagger,
+    UnknownError: j2s(unknownErrorSchema).swagger,
   },
 });
