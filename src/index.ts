@@ -1,5 +1,5 @@
 import { Application, RequestHandler } from 'express';
-import { isCelebrate } from 'celebrate';
+import { isCelebrateError } from 'celebrate';
 import { getSwagger, generateSwagger } from './swagger';
 import { validateSchema, validateValue } from './lib/validator';
 import { IOptions, IRouteResult, IExecOptions, ITemplateRoute } from './interfaces';
@@ -53,7 +53,7 @@ export const router = {
   }),
 };
 
-export const isValidationError = (error: object): boolean => isCelebrate(error);
+export const isValidationError = (error: object): boolean => isCelebrateError(error);
 
 export * from './swagger/errors';
 export * from './constants';

@@ -1,4 +1,4 @@
-import * as Joi from '@hapi/joi';
+import * as Joi from 'joi';
 
 export const errorSchema = Joi.object({
   status: Joi.number()

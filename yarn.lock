@@ -447,45 +447,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/address@npm:2.x.x":
-  version: 2.1.4
-  resolution: "@hapi/address@npm:2.1.4"
-  checksum: 10341c3b650746c79ac2c57118efb05d45d850b33aef82a6f2ba89419fdbf1b6d337c8b085cc9bc1af7a5fb18379c07edaf3be7584426f40bd370ed6de29e965
+"@hapi/hoek@npm:^9.0.0":
+  version: 9.2.1
+  resolution: "@hapi/hoek@npm:9.2.1"
+  checksum: 6a439f672df5f12f1d08d56967b4cb364ce05d81e95e3c3c1b88c5a98b917ca91c70e78cc0b2b4219a760cceec1f22d6658bfc93a83670cecc1ce9ca2247ebd8
   languageName: node
   linkType: hard
 
-"@hapi/bourne@npm:1.x.x":
-  version: 1.3.2
-  resolution: "@hapi/bourne@npm:1.3.2"
-  checksum: 8403a2e8297fbb49a0e4fca30e874590d96ecaf7165740804037ff30625f3fdea6353d9f7f4422607eb069a3f471900a3037df34285a95135d15c6a8b10094b0
-  languageName: node
-  linkType: hard
-
-"@hapi/hoek@npm:8.x.x, @hapi/hoek@npm:^8.3.0":
-  version: 8.5.1
-  resolution: "@hapi/hoek@npm:8.5.1"
-  checksum: 8f8ce36be4f5e5d7a712072d4a028a4a95beec7a7da3a7a6e9a0c07d697f04c19b37d93751db352c314ea831f7e2120569a035dc6a351ed8c0444f1d3b275621
-  languageName: node
-  linkType: hard
-
-"@hapi/joi@npm:15.x.x, @hapi/joi@npm:~15.1.1":
-  version: 15.1.1
-  resolution: "@hapi/joi@npm:15.1.1"
+"@hapi/topo@npm:^5.0.0":
+  version: 5.1.0
+  resolution: "@hapi/topo@npm:5.1.0"
   dependencies:
-    "@hapi/address": 2.x.x
-    "@hapi/bourne": 1.x.x
-    "@hapi/hoek": 8.x.x
-    "@hapi/topo": 3.x.x
-  checksum: 5bc3df9d43d4a53c41fd172d2958a4a846dbacbe2a2abe16830059109c436776d7be98144f14af9d328ebd107dbebafe55e00a9032a905aef45aadff988b54bf
-  languageName: node
-  linkType: hard
-
-"@hapi/topo@npm:3.x.x":
-  version: 3.1.6
-  resolution: "@hapi/topo@npm:3.1.6"
-  dependencies:
-    "@hapi/hoek": ^8.3.0
-  checksum: 34278bc13b4023d6d0d7c913605a254b2d728dc6489cd465269eebaa7d8d2d81cda3f2157398dca87d3cb9e1a8aa8a1158ce2564c71a8e289b807c144e3b4c1e
+    "@hapi/hoek": ^9.0.0
+  checksum: 604dfd5dde76d5c334bd03f9001fce69c7ce529883acf92da96f4fe7e51221bf5e5110e964caca287a6a616ba027c071748ab636ff178ad750547fba611d6014
   languageName: node
   linkType: hard
 
@@ -770,6 +744,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sideway/address@npm:^4.1.0":
+  version: 4.1.2
+  resolution: "@sideway/address@npm:4.1.2"
+  dependencies:
+    "@hapi/hoek": ^9.0.0
+  checksum: 1e4910f7b3205347f78e698923dd7e0bb400c9e9e9bdd4a059edb6d2e32a540b426aba4652d095ea299fb75019d87883251dd9b96b350c00a35454bcdfa5f9f5
+  languageName: node
+  linkType: hard
+
+"@sideway/formula@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@sideway/formula@npm:3.0.0"
+  checksum: 8ae26a0ed6bc84f7310be6aae6eb9d81e97f382619fc69025d346871a707eaab0fa38b8c857e3f0c35a19923de129f42d35c50b8010c928d64aab41578580ec4
+  languageName: node
+  linkType: hard
+
+"@sideway/pinpoint@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@sideway/pinpoint@npm:2.0.0"
+  checksum: 0f4491e5897fcf5bf02c46f5c359c56a314e90ba243f42f0c100437935daa2488f20482f0f77186bd6bf43345095a95d8143ecf8b1f4d876a7bc0806aba9c3d2
+  languageName: node
+  linkType: hard
+
 "@sindresorhus/is@npm:^0.14.0":
   version: 0.14.0
   resolution: "@sindresorhus/is@npm:0.14.0"
@@ -938,22 +935,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/hapi__joi@npm:*":
-  version: 17.1.7
-  resolution: "@types/hapi__joi@npm:17.1.7"
-  checksum: 9acadb6062ac3105468eab25cb33c4ccbf03f941eac7e1a044f5eddcc6808bef98f7decaa20dacfa8b14a05a6f6c3d696fc800964c57c3e329e55a22caf6cc97
-  languageName: node
-  linkType: hard
-
-"@types/hapi__joi@npm:~15.0.4":
-  version: 15.0.4
-  resolution: "@types/hapi__joi@npm:15.0.4"
-  dependencies:
-    "@types/hapi__joi": "*"
-  checksum: 711a3b63685b1b4b6d94f94348d306318e402fbec24e278e8529b725d5c6b9c817e4d01a5327f07a56e6b2d138e20171ea1cec8309328015118c34b92c91cb1b
-  languageName: node
-  linkType: hard
-
 "@types/http-cache-semantics@npm:*":
   version: 4.0.1
   resolution: "@types/http-cache-semantics@npm:4.0.1"
@@ -1054,7 +1035,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ramda@npm:0.27.45":
+"@types/ramda@npm:^0.27.45":
   version: 0.27.45
   resolution: "@types/ramda@npm:0.27.45"
   dependencies:
@@ -1686,13 +1667,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"celebrate@npm:~10.0.1":
-  version: 10.0.1
-  resolution: "celebrate@npm:10.0.1"
+"celebrate@npm:~15.0.0":
+  version: 15.0.0
+  resolution: "celebrate@npm:15.0.0"
   dependencies:
-    "@hapi/joi": 15.x.x
     escape-html: 1.0.3
-  checksum: 8a5b9330abef405877db946ebeb244b9f581a89572d20f7de6283fa716a3a896b67e220eac7f809687fdbd6aa8e79684f571cfc2b6cc2e6aeba65a65fe8e8ce9
+    joi: 17.x.x
+    lodash: 4.17.x
+  checksum: 7d1a4bb5ff1b02c52d18fbce7e6b8bd9c9372007120219c7355cad3852e73af3fd23b2e4cf12620788ce6535ca012d01e3e47ce573615e30b9d910690562c869
   languageName: node
   linkType: hard
 
@@ -4148,14 +4130,27 @@ fsevents@^2.3.2:
   languageName: node
   linkType: hard
 
-"joi-to-swagger@git://github.com/ShopBonsai/joi-to-swagger.git":
-  version: 4.0.0
-  resolution: "joi-to-swagger@git://github.com/ShopBonsai/joi-to-swagger.git#commit=2e4ff50d80e9bc2ed990fa70a5100830b25cdd0a"
+"joi-to-swagger@npm:6.0.1":
+  version: 6.0.1
+  resolution: "joi-to-swagger@npm:6.0.1"
   dependencies:
-    lodash: ^4.17.15
+    lodash: ^4.17.21
   peerDependencies:
-    "@hapi/joi": ">= 14"
-  checksum: 4ae64a00cd0afb495831013cf04421159fdc50eb925b05a2f3f568fd2112971c84e589e1b5ca4aa7140cac53d81b06f25e9936e5ec0f08620b01ff980f1e6760
+    joi: ">=17.1.1"
+  checksum: 26e34ca25d67c358d139b744ce69783fef94f4903c7c69f5b9fb98818203a12848e979fe1032ecd4ee54f8f6ceafc1ba9bad79732f25e4e9db56088e5653ee6d
+  languageName: node
+  linkType: hard
+
+"joi@npm:17.x.x, joi@npm:~17.4.2":
+  version: 17.4.2
+  resolution: "joi@npm:17.4.2"
+  dependencies:
+    "@hapi/hoek": ^9.0.0
+    "@hapi/topo": ^5.0.0
+    "@sideway/address": ^4.1.0
+    "@sideway/formula": ^3.0.0
+    "@sideway/pinpoint": ^2.0.0
+  checksum: 977ada1f9d38c2762689b61cec1272176968ccea731a16b71713ebaa067f140460e0b6f7eccff6fc12206fddce22e7f4ed74724651bc1b24b1e26d43280633d0
   languageName: node
   linkType: hard
 
@@ -4422,7 +4417,7 @@ fsevents@^2.3.2:
   languageName: node
   linkType: hard
 
-"lodash@npm:4.x, lodash@npm:^4.17.12, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.7.0":
+"lodash@npm:4.17.x, lodash@npm:4.x, lodash@npm:^4.17.12, lodash@npm:^4.17.19, lodash@npm:^4.17.21, lodash@npm:^4.7.0":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
@@ -4887,27 +4882,27 @@ fsevents@^2.3.2:
   version: 0.0.0-use.local
   resolution: "no-hassle@workspace:."
   dependencies:
-    "@hapi/joi": ~15.1.1
     "@types/express": 4.17.13
-    "@types/hapi__joi": ~15.0.4
     "@types/jest": ^27.0.2
-    "@types/ramda": 0.27.45
-    celebrate: ~10.0.1
+    "@types/ramda": ^0.27.45
+    celebrate: ~15.0.0
     express: 4.17.1
     jest: ^27.2.4
-    joi-to-swagger: "git://github.com/ShopBonsai/joi-to-swagger.git"
+    joi: ~17.4.2
+    joi-to-swagger: 6.0.1
     np: ^7.5.0
+    openapi3-ts: ^2.0.1
     pre-commit: ^1.2.2
     prettier: ^1.19.1
-    ramda: 0.27.1
+    ramda: ^0.27.1
     swagger-ui-express: 4.1.6
     ts-jest: ^27.0.5
     tslint: ^6.1.3
     tslint-config-airbnb: ^5.11.2
     typescript: 4.4.3
   peerDependencies:
-    "@hapi/joi": ~15.1.1
-    celebrate: ~10.0.1
+    celebrate: ~15.0.0
+    joi: ~17.4.1
   languageName: unknown
   linkType: soft
 
@@ -5159,6 +5154,15 @@ fsevents@^2.3.2:
     is-docker: ^2.0.0
     is-wsl: ^2.1.1
   checksum: 3333900ec0e420d64c23b831bc3467e57031461d843c801f569b2204a1acc3cd7b3ec3c7897afc9dde86491dfa289708eb92bba164093d8bd88fb2c231843c91
+  languageName: node
+  linkType: hard
+
+"openapi3-ts@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "openapi3-ts@npm:2.0.1"
+  dependencies:
+    yaml: ^1.10.0
+  checksum: 11114b44366c8f9a2466fc2053513286c516681548eac37a57964510bdca95e0a1e625306a0dc6a2457391b770e16d22da88d6e2886bad745e6b990f403f8a09
   languageName: node
   linkType: hard
 
@@ -5616,7 +5620,7 @@ fsevents@^2.3.2:
   languageName: node
   linkType: hard
 
-"ramda@npm:0.27.1":
+"ramda@npm:^0.27.1":
   version: 0.27.1
   resolution: "ramda@npm:0.27.1"
   checksum: 31a0c0ef739b2525d7615f84cbb5d3cb89ee0c795469b711f729ea1d8df0dccc3cd75d3717a1e9742d42315ce86435680b7c87743eb7618111c60c144a5b8059
