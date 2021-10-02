@@ -51,14 +51,14 @@
     "celebrate": "~10.0.1"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   },
   "directories": {
     "tests": "tests"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/knor-el-snor/no-hassle.git"
+    "url": "https://github.com/ShopBonsai/no-hassle.git"
   },
   "keywords": [
     "NodeJS",
@@ -70,8 +70,8 @@
   ],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/knor-el-snor/no-hassle/issues"
+    "url": "https://github.com/ShopBonsai/no-hassle/issues"
   },
-  "homepage": "https://github.com/knor-el-snor/no-hassle/tree/master/packages/core#readme",
+  "homepage": "https://github.com/ShopBonsai/no-hassle/tree/master/packages/core#readme",
   "packageManager": "yarn@3.1.0-rc.8"
 }
