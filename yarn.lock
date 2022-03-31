@@ -4148,9 +4148,9 @@ fsevents@^2.3.2:
   languageName: node
   linkType: hard
 
-"joi-to-swagger@git://github.com/ShopBonsai/joi-to-swagger.git":
+"joi-to-swagger@https://github.com/ShopBonsai/joi-to-swagger.git":
   version: 4.0.0
-  resolution: "joi-to-swagger@git://github.com/ShopBonsai/joi-to-swagger.git#commit=2e4ff50d80e9bc2ed990fa70a5100830b25cdd0a"
+  resolution: "joi-to-swagger@https://github.com/ShopBonsai/joi-to-swagger.git#commit=2e4ff50d80e9bc2ed990fa70a5100830b25cdd0a"
   dependencies:
     lodash: ^4.17.15
   peerDependencies:
@@ -4895,7 +4895,7 @@ fsevents@^2.3.2:
     celebrate: ~10.0.1
     express: 4.17.1
     jest: ^27.2.4
-    joi-to-swagger: "git://github.com/ShopBonsai/joi-to-swagger.git"
+    joi-to-swagger: "https://github.com/ShopBonsai/joi-to-swagger.git"
     np: ^7.5.0
     pre-commit: ^1.2.2
     prettier: ^1.19.1
