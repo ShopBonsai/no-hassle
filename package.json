@@ -4,7 +4,6 @@
   "description": "",
   "main": "build/index.js",
   "types": "build/index.d.ts",
-  "host": "https://test.com",
   "scripts": {
     "clean": "rm -rf ./build/*",
     "build": "npm run clean && tsc",
@@ -16,8 +15,7 @@
     "prettier": "prettier --write \"**/*.ts\"",
     "pretest": "npm run build",
     "prepare": "npm run build",
-    "postinstall": "yarn && yarn tsc",
-    "release": "node_modules/np/source/cli.js --no-cleanup",
+g    "release": "node_modules/np/source/cli.js --no-cleanup",
     "git:clean": "git branch --merged | egrep -v \"(^\\*|master|staging|develop)\" | xargs git branch -d",
     "git:clean-remote": "git remote prune origin"
   },
