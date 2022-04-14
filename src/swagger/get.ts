@@ -20,7 +20,7 @@ const globalSwagger: ISwaggerDefinition = {
     basePath: '/',
     version: '1.0',
     apiVersion: '2.0',
-    contact: { email: 'developers@shopbonsai.com' },
+    contact: { email: 'developers@shopbonsai.ca' },
   }),
 };
 
