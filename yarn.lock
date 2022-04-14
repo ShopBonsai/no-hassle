@@ -2612,6 +2612,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-safe-stringify@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "fast-safe-stringify@npm:2.1.1"
+  checksum: a851cbddc451745662f8f00ddb622d6766f9bd97642dabfd9a405fb0d646d69fc0b9a1243cbf67f5f18a39f40f6fa821737651ff1bceeba06c9992ca2dc5bd3d
+  languageName: node
+  linkType: hard
+
 "fastq@npm:^1.6.0":
   version: 1.13.0
   resolution: "fastq@npm:1.13.0"
@@ -4894,6 +4901,7 @@ fsevents@^2.3.2:
     "@types/ramda": 0.27.45
     celebrate: ~10.0.1
     express: 4.17.1
+    fast-safe-stringify: ^2.1.1
     jest: ^27.2.4
     joi-to-swagger: "https://github.com/ShopBonsai/joi-to-swagger.git"
     np: ^7.5.0
