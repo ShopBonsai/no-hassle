@@ -1,6 +1,6 @@
 import { Application, RequestHandler } from 'express';
 import { isCelebrate } from 'celebrate';
-import { getSwagger, generateSwagger } from './swagger';
+import { getSwagger, generateSwagger, writeSwagger } from './swagger';
 import { validateSchema, validateValue } from './lib/validator';
 import { IOptions, IRouteResult, IExecOptions, ITemplateRoute } from './interfaces';
 import { HttpMethod } from './constants';
@@ -58,4 +58,4 @@ export const isValidationError = (error: object): boolean => isCelebrate(error);
 export * from './swagger/errors';
 export * from './constants';
 export * from './interfaces';
-export { IOptions, ITemplateRoute, getSwagger, validateValue, validateSchema };
+export { IOptions, ITemplateRoute, getSwagger, validateValue, validateSchema, writeSwagger };
