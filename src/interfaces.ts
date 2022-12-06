@@ -65,6 +65,14 @@ export interface IDocsOptions {
   tags?: string[];
   description?: string;
   summary?: string;
+  /**
+   * The prefix to add to the route path.
+   */
+  prefix?: string;
+  /**
+   * Whether to omit the URL prefix from the generated documentation.
+   */
+  shouldOmitPrefixInDocs?: boolean;
 }
 
 export interface ITemplateRoute extends IDocsOptions {
@@ -73,10 +81,18 @@ export interface ITemplateRoute extends IDocsOptions {
 }
 
 export interface IExecOptions extends IDocsOptions {
+  /**
+   * Whether to generate documentation for this route.
+   */
   docs?: boolean;
+  /**
+   * The HTTP method of the route.
+   */
   method: HttpMethod;
+  /**
+   * The path of the route.
+   */
   path: string;
-  prefix?: string;
 }
 
 export interface IOptions extends IDocsOptions {
