@@ -27,7 +27,6 @@ const globalSwagger: ISwaggerDefinition = {
 export const updateSwagger = (key: string, values: object) =>
   Object.assign(globalSwagger[key], values);
 
-
 const getPath = (path: string, prefix: string, shouldOmitPrefix: boolean) => {
   const cleanedPath = cleanPath(path);
 
