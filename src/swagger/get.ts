@@ -32,7 +32,13 @@ const getPath = (path: string, prefix: string, shouldOmitPrefix: boolean) => {
 
   if (shouldOmitPrefix) {
     const prefixRegex = new RegExp(`^${prefix}`);
-    return cleanedPath.replace(prefixRegex, '');
+    const newPath = cleanedPath.replace(prefixRegex, '');
+
+    if (newPath === '') {
+      return '/';
+    }
+
+    return newPath;
   }
 
   return cleanedPath;
