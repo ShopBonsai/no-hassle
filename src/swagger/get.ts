@@ -27,6 +27,17 @@ const globalSwagger: ISwaggerDefinition = {
 export const updateSwagger = (key: string, values: object) =>
   Object.assign(globalSwagger[key], values);
 
+const getPath = (path: string, prefix: string, shouldOmitPrefix: boolean) => {
+  const cleanedPath = cleanPath(path);
+
+  if (shouldOmitPrefix) {
+    const prefixRegex = new RegExp(`^${prefix}`);
+    return cleanedPath.replace(prefixRegex, '');
+  }
+
+  return cleanedPath;
+};
+
 export const generateSwagger = (path: string, method: HttpMethod, options: IDocsOptions) => {
   const {
     input,
@@ -35,9 +46,11 @@ export const generateSwagger = (path: string, method: HttpMethod, options: IDocs
     summary,
     description,
     tags = [],
+    shouldOmitPrefixInDocs = false,
+    prefix = '',
   } = options;
 
-  const cleanedPath = cleanPath(path);
+  const cleanedPath = getPath(path, prefix, shouldOmitPrefixInDocs);
 
   const result = {
     [method]: {
