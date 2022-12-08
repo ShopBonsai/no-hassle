@@ -1,4 +1,4 @@
-import { IDocsOptions, ISwaggerOptions, ISwaggerDefinition } from '../interfaces';
+import { IDocsOptions, ISwaggerOptions, ISwaggerDefinition, SchemeType } from '../interfaces';
 import { cleanPath } from '../lib/utils';
 import { baseDefinition } from './baseDefinition';
 import { getParameters } from './parameter';
@@ -17,6 +17,7 @@ const globalSwagger: ISwaggerDefinition = {
     title: 'Default swagger title',
     description: 'The API is documented here',
     host: 'localhost:3000',
+    schemes: [SchemeType.Http],
     basePath: '/',
     version: '1.0',
     apiVersion: '2.0',

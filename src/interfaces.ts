@@ -11,10 +11,18 @@ export interface IRouteResult {
   template: (template: ITemplateRoute, ...args: RequestHandler[]) => IRouteResult;
 }
 
+export enum SchemeType {
+  Http = 'http',
+  Https = 'https',
+  Ws = 'ws',
+  Wss = 'wss',
+}
+
 export interface ISwaggerBaseDefinition {
   title: string;
   description: string;
   host: string;
+  schemes: SchemeType[];
   basePath: string;
   contact?: { email: string };
   version?: string;
@@ -25,6 +33,7 @@ export interface ISwaggerDefinition {
   swagger: string;
   host: string;
   basePath: string;
+  schemes: SchemeType[];
   info: {
     description: string;
     version: string;

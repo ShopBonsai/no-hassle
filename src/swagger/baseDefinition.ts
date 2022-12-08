@@ -12,12 +12,14 @@ export const baseDefinition = ({
   title,
   description,
   host,
+  schemes,
   basePath,
   contact,
   version,
   apiVersion = '2.0',
 }: ISwaggerBaseDefinition): ISwaggerDefinition => ({
   host,
+  schemes,
   basePath,
   swagger: apiVersion,
   info: {
