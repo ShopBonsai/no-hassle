@@ -82,6 +82,7 @@ export const getSwagger = (options: ISwaggerOptions = {}): ISwaggerDefinition =>
   const {
     apiVersion = SwaggerDefaultConfig.VERSION,
     host = SwaggerDefaultConfig.HOST,
+    schemes = [SchemeType.Http],
     auth,
     ...otherOptions
   } = options;
@@ -91,6 +92,7 @@ export const getSwagger = (options: ISwaggerOptions = {}): ISwaggerDefinition =>
     ...globalSwagger,
     ...authentication,
     host,
+    schemes,
     info: {
       ...globalSwagger.info,
       ...otherOptions,
