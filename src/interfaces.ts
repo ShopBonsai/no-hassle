@@ -46,10 +46,12 @@ export interface ISwaggerDefinition {
   definitions: {};
 }
 
-export enum AuthenticationType {
+export enum AuthenticationTypes {
   BASIC = 'basic',
   API_KEY = 'apiKey',
 }
+
+export type AuthenticationType = `${AuthenticationTypes}`;
 
 export type AuthenticationOptions = { apiKeyHeaderName?: string };
 

@@ -1,5 +1,5 @@
 import { DEFAULT_API_KEY_HEADER } from '../constants';
-import { AuthenticationOptions, AuthenticationType } from '../interfaces';
+import { AuthenticationOptions, AuthenticationType, AuthenticationTypes } from '../interfaces';
 
 const basicConfig = {
   securityDefinitions: {
@@ -23,9 +23,9 @@ const apiKeyConfig = (keyName: string) => ({
 
 export const getAuthentication = (type?: AuthenticationType, options?: AuthenticationOptions) => {
   switch (type) {
-    case AuthenticationType.BASIC:
+    case AuthenticationTypes.BASIC:
       return basicConfig;
-    case AuthenticationType.API_KEY:
+    case AuthenticationTypes.API_KEY:
       return apiKeyConfig(options?.apiKeyHeaderName || DEFAULT_API_KEY_HEADER);
     default:
       return {};
