@@ -29,21 +29,20 @@ export const getParameters = (swagger: ISwaggerDefinition, input?: IInput) => {
   }
 
   if (query) {
-    const { swagger } = j2s(query as ISchema);
-    const { properties } = swagger;
+    const { properties, required } = j2s(query as ISchema).swagger;
 
     Object.keys(properties).forEach((key) => {
       result.push({
         in: 'query',
         name: key,
+        required: required.includes(key),
         ...properties[key],
       });
     });
   }
 
   if (params) {
-    const { swagger } = j2s(params as ISchema);
-    const { properties } = swagger;
+    const { properties } = j2s(query as ISchema).swagger;
 
     Object.keys(properties).forEach((key) => {
       result.push({
@@ -56,12 +55,13 @@ export const getParameters = (swagger: ISwaggerDefinition, input?: IInput) => {
   }
 
   if (headers) {
-    const { properties } = j2s(headers as ISchema).swagger;
+    const { properties, required = [] } = j2s(headers as ISchema).swagger;
 
     Object.keys(properties).forEach((key) => {
       result.push({
         in: 'header',
         name: key,
+        required: required.includes(key),
         ...properties[key],
       });
     });
