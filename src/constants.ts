@@ -5,3 +5,5 @@ export enum HttpMethod {
   Patch = 'patch',
   Delete = 'delete',
 }
+
+export const DEFAULT_API_KEY_HEADER = 'API-Key';

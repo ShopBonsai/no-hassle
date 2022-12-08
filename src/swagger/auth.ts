@@ -1,6 +1,5 @@
-enum AuthenticationType {
-  BASIC = 'basic',
-}
+import { DEFAULT_API_KEY_HEADER } from '../constants';
+import { AuthenticationOptions, AuthenticationType } from '../interfaces';
 
 const basicConfig = {
   securityDefinitions: {
@@ -11,8 +10,24 @@ const basicConfig = {
   security: [{ basicAuth: [] }],
 };
 
-const authenticationConfiguration = {
-  [AuthenticationType.BASIC]: basicConfig,
-};
+const apiKeyConfig = (keyName: string) => ({
+  security: [{ APIKeyHeader: [] }],
+  securityDefinitions: {
+    APIKeyHeader: {
+      type: 'apiKey',
+      name: keyName,
+      in: 'header',
+    },
+  },
+});
 
-export const getAuthentication = (type?: 'basic') => authenticationConfiguration[type];
+export const getAuthentication = (type?: AuthenticationType, options?: AuthenticationOptions) => {
+  switch (type) {
+    case AuthenticationType.BASIC:
+      return basicConfig;
+    case AuthenticationType.API_KEY:
+      return apiKeyConfig(options?.apiKeyHeaderName || DEFAULT_API_KEY_HEADER);
+    default:
+      return {};
+  }
+};

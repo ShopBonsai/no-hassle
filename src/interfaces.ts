@@ -46,6 +46,13 @@ export interface ISwaggerDefinition {
   definitions: {};
 }
 
+export enum AuthenticationType {
+  BASIC = 'basic',
+  API_KEY = 'apiKey',
+}
+
+export type AuthenticationOptions = { apiKeyHeaderName?: string };
+
 export interface ISwaggerOptions {
   title?: string;
   description?: string;
@@ -54,7 +61,8 @@ export interface ISwaggerOptions {
   basePath?: string;
   apiVersion?: '2.0' | '3.0';
   version?: string;
-  auth?: 'basic';
+  auth?: AuthenticationType;
+  authOptions?: AuthenticationOptions;
 }
 
 export interface IInput {
