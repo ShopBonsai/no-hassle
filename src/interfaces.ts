@@ -50,6 +50,7 @@ export interface ISwaggerOptions {
   title?: string;
   description?: string;
   host?: string;
+  schemes?: SchemeType[];
   basePath?: string;
   apiVersion?: '2.0' | '3.0';
   version?: string;
