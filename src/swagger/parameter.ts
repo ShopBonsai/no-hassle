@@ -6,7 +6,7 @@ import { getDefinition } from './definition';
 export const getParameters = (swagger: ISwaggerDefinition, input?: IInput) => {
   if (!input) return [];
 
-  const { body, query, params } = input;
+  const { body, query, params, headers } = input;
   const result: {
     in: string;
     name: string;
@@ -50,6 +50,18 @@ export const getParameters = (swagger: ISwaggerDefinition, input?: IInput) => {
         in: 'path',
         name: key,
         required: true,
+        ...properties[key],
+      });
+    });
+  }
+
+  if (headers) {
+    const { properties } = j2s(headers as ISchema).swagger;
+
+    Object.keys(properties).forEach((key) => {
+      result.push({
+        in: 'header',
+        name: key,
         ...properties[key],
       });
     });

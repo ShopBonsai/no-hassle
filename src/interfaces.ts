@@ -71,6 +71,7 @@ export interface IInput {
   body?: ISchema;
   query?: ISchema | object;
   params?: ISchema | object;
+  headers?: ISchema | object;
 }
 
 export type IOutput = {
