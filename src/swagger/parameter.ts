@@ -29,7 +29,7 @@ export const getParameters = (swagger: ISwaggerDefinition, input?: IInput) => {
   }
 
   if (query) {
-    const { properties, required } = j2s(query as ISchema).swagger;
+    const { properties, required = [] } = j2s(query as ISchema).swagger;
 
     Object.keys(properties).forEach((key) => {
       result.push({
