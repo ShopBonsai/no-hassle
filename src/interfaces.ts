@@ -18,6 +18,11 @@ export enum SchemeType {
   Wss = 'wss',
 }
 
+export interface IExternalDocs {
+  description: string;
+  url: string;
+}
+
 export interface ISwaggerBaseDefinition {
   title: string;
   description: string;
@@ -42,6 +47,7 @@ export interface ISwaggerDefinition {
       email: string;
     };
   };
+  externalDocs?: IExternalDocs;
   paths: {};
   definitions: {};
 }
@@ -65,6 +71,7 @@ export interface ISwaggerOptions {
   version?: string;
   auth?: AuthenticationType;
   authOptions?: AuthenticationOptions;
+  externalDocs?: IExternalDocs;
 }
 
 export interface IInput {
@@ -94,6 +101,7 @@ export interface IDocsOptions {
    * Whether to omit the URL prefix from the generated documentation.
    */
   shouldOmitPrefixInDocs?: boolean;
+  externalDocs?: IExternalDocs;
 }
 
 export interface ITemplateRoute extends IDocsOptions {

@@ -55,6 +55,7 @@ export const generateSwagger = (path: string, method: HttpMethod, options: IDocs
     tags = [],
     shouldOmitPrefixInDocs = false,
     prefix = '',
+    externalDocs,
   } = options;
 
   const cleanedPath = getPath(path, prefix, shouldOmitPrefixInDocs);
@@ -68,6 +69,7 @@ export const generateSwagger = (path: string, method: HttpMethod, options: IDocs
       // optional
       ...(summary && { summary }),
       ...(description && { description }),
+      ...(externalDocs && { externalDocs }),
     },
   };
   // If path already exists (other method for example)
