@@ -1,11 +1,9 @@
 import { Application, RequestHandler } from 'express';
 import { isCelebrate } from 'celebrate';
-import { getSwagger, generateSwagger, writeSwagger, getGlobalSwagger } from './swagger';
+import { getSwagger, generateSwagger, writeSwagger } from './swagger';
 import { validateSchema, validateValue } from './lib/validator';
 import { IOptions, IRouteResult, IExecOptions, ITemplateRoute } from './interfaces';
-import { HttpMethod } from './constants';
-
-const swagger = getGlobalSwagger();
+import { GLOBAL_SWAGGER, HttpMethod } from './constants';
 
 const addRoute = (
   app: Application,
@@ -26,7 +24,7 @@ const addRoute = (
 
   // Autogenerate documentation based on the schema
   if (docs) {
-    generateSwagger(swagger, path, method, options);
+    generateSwagger(GLOBAL_SWAGGER, path, method, options);
   }
 
   // Add express route (with optional validation)
