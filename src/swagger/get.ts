@@ -11,22 +11,24 @@ enum SwaggerDefaultConfig {
   HOST = '',
 }
 
-// TODO: move expectation to consumer
-const globalSwagger: ISwaggerDefinition = {
-  ...baseDefinition({
-    title: 'Default swagger title',
-    description: 'The API is documented here',
-    host: 'localhost:3000',
-    schemes: [SchemeType.Http],
-    basePath: '/',
-    version: '1.0',
-    apiVersion: '2.0',
-    contact: { email: 'developers@shopbonsai.ca' },
-  }),
+export const getGlobalSwagger = (): ISwaggerDefinition => {
+  // TODO: move expectation to consumer
+  return {
+    ...baseDefinition({
+      title: 'Default swagger title',
+      description: 'The API is documented here',
+      host: 'localhost:3000',
+      schemes: [SchemeType.Http],
+      basePath: '/',
+      version: '1.0',
+      apiVersion: '2.0',
+      contact: { email: 'developers@shopbonsai.ca' },
+    }),
+  };
 };
 
-export const updateSwagger = (key: string, values: object) =>
-  Object.assign(globalSwagger[key], values);
+export const updateSwagger = (swagger: ISwaggerDefinition, key: string, values: object) =>
+  Object.assign(swagger[key], values);
 
 const getPath = (path: string, prefix: string, shouldOmitPrefix: boolean) => {
   const cleanedPath = cleanPath(path);
@@ -45,7 +47,12 @@ const getPath = (path: string, prefix: string, shouldOmitPrefix: boolean) => {
   return cleanedPath;
 };
 
-export const generateSwagger = (path: string, method: HttpMethod, options: IDocsOptions) => {
+export const generateSwagger = (
+  swagger: ISwaggerDefinition,
+  path: string,
+  method: HttpMethod,
+  options: IDocsOptions,
+) => {
   const {
     input,
     output,
@@ -64,8 +71,8 @@ export const generateSwagger = (path: string, method: HttpMethod, options: IDocs
     [method]: {
       tags,
       produces: contentTypes,
-      parameters: getParameters(globalSwagger, input),
-      responses: getResponses(globalSwagger, output),
+      parameters: getParameters(swagger, input),
+      responses: getResponses(swagger, output),
       // optional
       ...(summary && { summary }),
       ...(description && { description }),
@@ -73,16 +80,23 @@ export const generateSwagger = (path: string, method: HttpMethod, options: IDocs
     },
   };
   // If path already exists (other method for example)
-  if (globalSwagger.paths.hasOwnProperty(cleanedPath)) {
-    Object.assign(globalSwagger.paths[cleanedPath], result);
+  if (swagger.paths.hasOwnProperty(cleanedPath)) {
+    updateSwagger(swagger, 'paths', {
+      [cleanedPath]: {
+        ...swagger.paths[cleanedPath],
+        ...result,
+      },
+    });
   } else {
-    updateSwagger('paths', { [cleanedPath]: result });
+    updateSwagger(swagger, 'paths', { [cleanedPath]: result });
   }
 };
 
-export const getSwagger = (options: ISwaggerOptions = {}): ISwaggerDefinition => {
+export const getSwagger = (
+  options: ISwaggerOptions = {},
+  swagger: ISwaggerDefinition = getGlobalSwagger(),
+): ISwaggerDefinition => {
   const {
-    apiVersion = SwaggerDefaultConfig.VERSION,
     host = SwaggerDefaultConfig.HOST,
     schemes = [SchemeType.Http],
     auth,
@@ -92,12 +106,12 @@ export const getSwagger = (options: ISwaggerOptions = {}): ISwaggerDefinition =>
 
   const authentication = getAuthentication(auth, authOptions);
   const result: ISwaggerDefinition = {
-    ...globalSwagger,
+    ...swagger,
     ...authentication,
     host,
     schemes,
     info: {
-      ...globalSwagger.info,
+      ...swagger.info,
       ...otherOptions,
     },
   };

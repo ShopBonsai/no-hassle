@@ -38,7 +38,11 @@ type Response = {
     $ref?: string;
   };
 };
-const responses: {[k: number | string]: Response} = {
+
+/**
+ * Returns default responses.
+ */
+const getDefaultResponses = (): {[k: number | string]: Response} => ({
   200: {
     description: 'Success',
   },
@@ -78,22 +82,23 @@ const responses: {[k: number | string]: Response} = {
   500: {
     description: '500 - Internal server error',
   },
-};
+});
 
 export const getResponses = (swagger: ISwaggerDefinition, output?: IOutput) => {
+  const pathResponses = getDefaultResponses();
   if (output) {
     Object.entries(output).forEach(([key, value]) => {
       // Handle objects wrapping joi schema
       if (!value.isJoi && value instanceof Object) {
-        Object.assign(responses[key], getObjectDefinition(swagger, value));
+        Object.assign(pathResponses[key], getObjectDefinition(swagger, value));
       } else {
-        Object.assign(responses[key], getSingleDefinition(swagger, value as ISchema));
+        Object.assign(pathResponses[key], getSingleDefinition(swagger, value as ISchema));
       }
     });
   }
 
   // Remove responses without schema
-  return Object.entries(responses).reduce((acc, [key, value]) => {
+  return Object.entries(pathResponses).reduce((acc, [key, value]) => {
     if (value.schema) {
       return {
         ...acc,

@@ -26,7 +26,7 @@ export const getDefinition = (
 
   // Add new definition
   const result = j2s(values, swagger.definitions);
-  updateSwagger('definitions', { [name]: result.swagger });
+  updateSwagger(swagger, 'definitions', { [name]: result.swagger });
 
   return name;
 };
