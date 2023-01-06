@@ -21,12 +21,12 @@ const apiKeyConfig = (keyName: string) => ({
   },
 });
 
-export const getAuthentication = (type?: AuthenticationType, options?: AuthenticationOptions) => {
+export const getAuthentication = (type?: AuthenticationType, options: AuthenticationOptions = {}) => {
   switch (type) {
     case AuthenticationTypes.BASIC:
       return basicConfig;
     case AuthenticationTypes.API_KEY:
-      return apiKeyConfig(options?.apiKeyHeaderName || DEFAULT_API_KEY_HEADER);
+      return apiKeyConfig(options.apiKeyHeaderName || DEFAULT_API_KEY_HEADER);
     default:
       return {};
   }
