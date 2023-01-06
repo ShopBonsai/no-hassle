@@ -1,9 +1,9 @@
 import { Application, RequestHandler } from 'express';
 import { isCelebrate } from 'celebrate';
-import { getSwagger, generateSwagger, writeSwagger } from './swagger';
+import { getSwagger, generateSwagger, writeSwagger, GLOBAL_SWAGGER } from './swagger';
 import { validateSchema, validateValue } from './lib/validator';
 import { IOptions, IRouteResult, IExecOptions, ITemplateRoute } from './interfaces';
-import { GLOBAL_SWAGGER, HttpMethod } from './constants';
+import { HttpMethod } from './constants';
 
 const addRoute = (
   app: Application,

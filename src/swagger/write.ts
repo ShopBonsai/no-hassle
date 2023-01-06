@@ -3,7 +3,7 @@ import stringify from 'fast-safe-stringify';
 import { parse } from 'path';
 import { ISwaggerOptions } from '../interfaces';
 import { getSwagger } from './get';
-import { GLOBAL_SWAGGER } from '../constants';
+import { GLOBAL_SWAGGER } from '../swagger';
 
 /**
  * Write swagger definitions to a file.

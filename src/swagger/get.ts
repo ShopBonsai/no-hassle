@@ -1,31 +1,15 @@
 import { IDocsOptions, ISwaggerOptions, ISwaggerDefinition, SchemeType } from '../interfaces';
 import { cleanPath } from '../lib/utils';
-import { baseDefinition } from './baseDefinition';
 import { getParameters } from './parameter';
 import { getResponses } from './response';
 import { getAuthentication } from './auth';
 import { HttpMethod } from '../constants';
+import { GLOBAL_SWAGGER } from './global';
 
 enum SwaggerDefaultConfig {
   VERSION = '2.0',
   HOST = '',
 }
-
-export const getGlobalSwagger = (): ISwaggerDefinition => {
-  // TODO: move expectation to consumer
-  return {
-    ...baseDefinition({
-      title: 'Default swagger title',
-      description: 'The API is documented here',
-      host: 'localhost:3000',
-      schemes: [SchemeType.Http],
-      basePath: '/',
-      version: '1.0',
-      apiVersion: '2.0',
-      contact: { email: 'developers@shopbonsai.ca' },
-    }),
-  };
-};
 
 export const updateSwagger = (swagger: ISwaggerDefinition, key: string, values: object) =>
   Object.assign(swagger[key], values);
@@ -92,9 +76,14 @@ export const generateSwagger = (
   }
 };
 
+/**
+ * Get the swagger definition.
+ * @param options - Swagger definition to override the default one.
+ * @param baseSwagger - Base swagger definition. Useful for tests, to avoid global pollution.
+ */
 export const getSwagger = (
   options: ISwaggerOptions = {},
-  swagger: ISwaggerDefinition = getGlobalSwagger(),
+  baseSwagger: ISwaggerDefinition = GLOBAL_SWAGGER,
 ): ISwaggerDefinition => {
   const {
     host = SwaggerDefaultConfig.HOST,
@@ -106,12 +95,12 @@ export const getSwagger = (
 
   const authentication = getAuthentication(auth, authOptions);
   const result: ISwaggerDefinition = {
-    ...swagger,
+    ...baseSwagger,
     ...authentication,
     host,
     schemes,
     info: {
-      ...swagger.info,
+      ...baseSwagger.info,
       ...otherOptions,
     },
   };

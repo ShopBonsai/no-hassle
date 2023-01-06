@@ -1,0 +1,230 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`router should add a route and generate swagger definition 1`] = `
+Object {
+  "basePath": "/",
+  "definitions": Object {
+    "BadRequestError": Object {
+      "description": "Provided input is invalid",
+      "properties": Object {
+        "errors": Object {
+          "items": Object {
+            "example": Object {
+              "detail": "",
+              "status": 400,
+              "title": "Bad input request",
+            },
+            "properties": Object {
+              "detail": Object {
+                "example": "Fatal issue",
+                "nullable": true,
+                "type": "string",
+              },
+              "status": Object {
+                "example": 500,
+                "format": "float",
+                "type": "number",
+              },
+              "title": Object {
+                "example": "Unknown error",
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "status",
+              "detail",
+              "title",
+            ],
+            "type": "object",
+          },
+          "type": "array",
+        },
+      },
+      "type": "object",
+    },
+    "NotFoundError": Object {
+      "description": "Not Found",
+      "properties": Object {
+        "errors": Object {
+          "items": Object {
+            "example": Object {
+              "detail": "",
+              "status": 404,
+              "title": "Not Found",
+            },
+            "properties": Object {
+              "detail": Object {
+                "example": "Fatal issue",
+                "nullable": true,
+                "type": "string",
+              },
+              "status": Object {
+                "example": 500,
+                "format": "float",
+                "type": "number",
+              },
+              "title": Object {
+                "example": "Unknown error",
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "status",
+              "detail",
+              "title",
+            ],
+            "type": "object",
+          },
+          "type": "array",
+        },
+      },
+      "type": "object",
+    },
+    "UnauthorizedError": Object {
+      "description": "Authentication information is missing or invalid",
+      "properties": Object {
+        "errors": Object {
+          "items": Object {
+            "example": Object {
+              "detail": "",
+              "status": 401,
+              "title": "Authentication information is missing or invalid",
+            },
+            "properties": Object {
+              "detail": Object {
+                "example": "Fatal issue",
+                "nullable": true,
+                "type": "string",
+              },
+              "status": Object {
+                "example": 500,
+                "format": "float",
+                "type": "number",
+              },
+              "title": Object {
+                "example": "Unknown error",
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "status",
+              "detail",
+              "title",
+            ],
+            "type": "object",
+          },
+          "type": "array",
+        },
+      },
+      "type": "object",
+    },
+    "UnknownError": Object {
+      "description": "Unknown error",
+      "properties": Object {
+        "errors": Object {
+          "items": Object {
+            "example": Object {
+              "detail": "",
+              "status": 500,
+              "title": "Unknown error",
+            },
+            "properties": Object {
+              "detail": Object {
+                "example": "Fatal issue",
+                "nullable": true,
+                "type": "string",
+              },
+              "status": Object {
+                "example": 500,
+                "format": "float",
+                "type": "number",
+              },
+              "title": Object {
+                "example": "Unknown error",
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "status",
+              "detail",
+              "title",
+            ],
+            "type": "object",
+          },
+          "type": "array",
+        },
+      },
+      "type": "object",
+    },
+    "testResult": Object {
+      "properties": Object {
+        "test": Object {
+          "example": "test",
+          "type": "string",
+        },
+      },
+      "type": "object",
+    },
+  },
+  "host": "",
+  "info": Object {
+    "contact": Object {
+      "email": "developers@shopbonsai.ca",
+    },
+    "description": "The API is documented here",
+    "title": "Default swagger title",
+    "version": "1.0",
+  },
+  "paths": Object {
+    "/hello": Object {
+      "get": Object {
+        "description": "Hello Swagger",
+        "parameters": Array [],
+        "produces": Array [
+          "application/json",
+        ],
+        "responses": Object {
+          "200": Object {
+            "description": "Success",
+            "schema": Object {
+              "$ref": "#/definitions/testResult",
+            },
+          },
+          "400": Object {
+            "description": "400 - Bad request",
+            "schema": Object {
+              "$ref": "#/definitions/BadRequestError",
+            },
+          },
+          "401": Object {
+            "description": "401 - Unauthorized",
+            "schema": Object {
+              "$ref": "#/definitions/UnauthorizedError",
+            },
+          },
+          "404": Object {
+            "description": "404 - Not found",
+            "schema": Object {
+              "$ref": "#/definitions/NotFoundError",
+            },
+          },
+          "5XX": Object {
+            "description": "500 - Unknown error",
+            "schema": Object {
+              "$ref": "#/definitions/UnknownError",
+            },
+          },
+        },
+        "summary": "Hello Swagger",
+        "tags": Array [
+          "Hello Swagger",
+        ],
+      },
+    },
+  },
+  "schemes": Array [
+    "http",
+  ],
+  "swagger": "2.0",
+}
+`;

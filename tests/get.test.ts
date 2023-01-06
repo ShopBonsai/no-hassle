@@ -1,7 +1,8 @@
 import * as Joi from '@hapi/joi';
 
-import { generateSwagger, getGlobalSwagger, getSwagger } from '../src/swagger/get';
+import { generateSwagger, getSwagger } from '../src/swagger/get';
 import { HttpMethod } from '../src/constants';
+import { getGlobalSwagger } from '../src/swagger';
 
 describe('generateSwagger', () => {
   it('should generate swagger', () => {
