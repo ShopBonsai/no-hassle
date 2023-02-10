@@ -27,7 +27,7 @@
     "@hapi/joi": "~15.1.1",
     "@types/ramda": "0.27.45",
     "celebrate": "~10.0.1",
-    "express": "4.17.1",
+    "express": "4.17.3",
     "fast-safe-stringify": "^2.1.1",
     "joi-to-swagger": "https://github.com/ShopBonsai/joi-to-swagger.git",
     "ramda": "0.27.1",
