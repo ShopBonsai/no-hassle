@@ -98,9 +98,9 @@ export interface IDocsOptions {
    */
   prefix?: string;
   /**
-   * Whether to omit the URL prefix from the generated documentation.
+   * Prefix to omit from the generated documentation.
    */
-  shouldOmitPrefixInDocs?: boolean;
+  prefixToOmit?: string;
   externalDocs?: IExternalDocs;
 }
 
