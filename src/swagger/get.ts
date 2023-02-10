@@ -1,5 +1,5 @@
 import { IDocsOptions, ISwaggerOptions, ISwaggerDefinition, SchemeType } from '../interfaces';
-import { getPath } from '../lib/utils';
+import { getTransformedPath, makeRemovePrefix } from '../lib/utils';
 import { getParameters } from './parameter';
 import { getResponses } from './response';
 import { getAuthentication } from './auth';
@@ -27,12 +27,12 @@ export const generateSwagger = (
     summary,
     description,
     tags = [],
-    shouldOmitPrefixInDocs = false,
-    prefix = '',
+    prefixToOmit,
     externalDocs,
   } = options;
 
-  const cleanedPath = getPath(path, prefix, shouldOmitPrefixInDocs);
+  const transformPath = prefixToOmit ? makeRemovePrefix(prefixToOmit) : undefined;
+  const cleanedPath = getTransformedPath(path, transformPath);
 
   const result = {
     [method]: {

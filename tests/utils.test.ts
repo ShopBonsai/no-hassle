@@ -1,4 +1,4 @@
-import { cleanPath, getPath } from '../src/lib/utils';
+import { cleanPath, makeRemovePrefix, getTransformedPath } from '../src/lib/utils';
 
 describe('Utility tests', () => {
   describe('Clean path tests', () => {
@@ -11,17 +11,30 @@ describe('Utility tests', () => {
   });
 });
 
-describe('getPath', () => {
-  const pathWithoutPrefix = '/test';
+describe('getTransformedPath', () => {
   const prefix = '/api';
-  const fullPath = `${prefix}${pathWithoutPrefix}`;
-  const REMOVE_PREFIX = true;
-  const KEEP_PREFIX = false;
-  it('should return the path without the prefix when option is set', () => {
-    expect(getPath(fullPath, prefix, REMOVE_PREFIX)).toBe(pathWithoutPrefix);
+  const pathWithoutPrefix = '/test';
+  const fullPathWithParam = `${prefix}${pathWithoutPrefix}/:id`;
+
+  it('should return the path after cleaning it by default', () => {
+    expect(getTransformedPath(fullPathWithParam)).toBe('/api/test/{id}');
   });
 
-  it('should return the path with the prefix when option is set', () => {
-    expect(getPath(fullPath, prefix, KEEP_PREFIX)).toBe(fullPath);
+  it.each([
+    {
+      transformFunction: makeRemovePrefix(prefix),
+      expectedPath: '/test/{id}',
+    },
+    {
+      transformFunction: makeRemovePrefix(`${prefix}${pathWithoutPrefix}`),
+      expectedPath: '/{id}',
+    },
+  ])('should use the predefined makeRemovePrefix to remove prefixes from a cleaned path', ({ transformFunction, expectedPath }) => {
+    expect(getTransformedPath(fullPathWithParam, transformFunction)).toBe(expectedPath);
+  });
+
+  it('should take a custom function to transform the path', () => {
+    const customTransform = (path: string) => path.replace(/\/api/, '');
+    expect(getTransformedPath(fullPathWithParam, customTransform)).toBe('/test/{id}');
   });
 });
