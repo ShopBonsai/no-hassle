@@ -1,5 +1,5 @@
 import { IDocsOptions, ISwaggerOptions, ISwaggerDefinition, SchemeType } from '../interfaces';
-import { cleanPath } from '../lib/utils';
+import { getPath } from '../lib/utils';
 import { getParameters } from './parameter';
 import { getResponses } from './response';
 import { getAuthentication } from './auth';
@@ -13,23 +13,6 @@ enum SwaggerDefaultConfig {
 
 export const updateSwagger = (swagger: ISwaggerDefinition, key: string, values: object) =>
   Object.assign(swagger[key], values);
-
-const getPath = (path: string, prefix: string, shouldOmitPrefix: boolean) => {
-  const cleanedPath = cleanPath(path);
-
-  if (shouldOmitPrefix) {
-    const prefixRegex = new RegExp(`^${prefix}`);
-    const newPath = cleanedPath.replace(prefixRegex, '');
-
-    if (newPath === '') {
-      return '/';
-    }
-
-    return newPath;
-  }
-
-  return cleanedPath;
-};
 
 export const generateSwagger = (
   swagger: ISwaggerDefinition,
