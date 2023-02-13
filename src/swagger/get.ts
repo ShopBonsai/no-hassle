@@ -72,11 +72,10 @@ export const getSwagger = (
     host = SwaggerDefaultConfig.HOST,
     schemes = [SchemeType.Http],
     auth,
-    authOptions,
     ...otherOptions
   } = options;
 
-  const authentication = getAuthentication(auth, authOptions);
+  const authentication = getAuthentication(auth);
   const result: ISwaggerDefinition = {
     ...baseSwagger,
     ...authentication,
