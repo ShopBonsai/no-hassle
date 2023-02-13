@@ -28,7 +28,7 @@ export const getSecurity = (security: Security): OutputSecurity => {
  * @returns {IOutputAuthentication} - Authentication object that can be used in the swagger spec.
  */
 export const getAuthentication = (auth?: Authentication): IOutputAuthentication => {
-  const { securityDefinitions, security = [] } = auth ?? {};
+  const { securityDefinitions, security = [] } = auth || {};
   if (!securityDefinitions) {
     return {};
   }
