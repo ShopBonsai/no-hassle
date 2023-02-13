@@ -59,7 +59,33 @@ export enum AuthenticationTypes {
 
 export type AuthenticationType = `${AuthenticationTypes}`;
 
-export type AuthenticationOptions = { apiKeyHeaderName?: string };
+interface CommonSecurityDefinition {
+  id: string;
+}
+
+export interface BasicSecurityDefinition extends CommonSecurityDefinition {
+  type: AuthenticationTypes.BASIC;
+}
+
+export interface ApiKeySecurityDefinition extends CommonSecurityDefinition {
+  type: AuthenticationTypes.API_KEY;
+  header: string;
+}
+
+export type SecurityDefinition =
+  | BasicSecurityDefinition
+  | ApiKeySecurityDefinition;
+
+/**
+ * Simplified security object.
+ * @example [['MyId'], ['MyId2', 'MyId3]] becomes [{ MyId: [] }, { MyId2: [], MyId3: [] }
+ */
+export type Security = string[][];
+
+export interface Authentication {
+  securityDefinitions?: SecurityDefinition[];
+  security?: Security;
+}
 
 export interface ISwaggerOptions {
   title?: string;
@@ -69,8 +95,7 @@ export interface ISwaggerOptions {
   basePath?: string;
   apiVersion?: '2.0' | '3.0';
   version?: string;
-  auth?: AuthenticationType;
-  authOptions?: AuthenticationOptions;
+  auth?: Authentication;
   externalDocs?: IExternalDocs;
 }
 
@@ -102,6 +127,7 @@ export interface IDocsOptions {
    */
   prefixToOmit?: string;
   externalDocs?: IExternalDocs;
+  security?: Security;
 }
 
 export interface ITemplateRoute extends IDocsOptions {

@@ -38,3 +38,10 @@ export const getTransformedPath = (
 
   return transformPath(cleanedPath);
 };
+
+/**
+ * Use to confirm that types have been exhaustively checked in case statements.
+ */
+export const assertNever = (x: never): never => {
+  throw new Error(`Unexpected object: ${x}`);
+};
