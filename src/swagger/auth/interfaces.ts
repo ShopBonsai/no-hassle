@@ -6,13 +6,15 @@ interface IOutputSecurityIndividual {
 
 export type OutputSecurity = IOutputSecurityIndividual[];
 
-export interface IOutputAuthentication {
-  securityDefinitions?: {
-    [key: string]: {
-      type: AuthenticationTypes;
-      name?: string;
-      in?: string;
-    };
+export interface IOutputSecurityDefinitions {
+  [key: string]: {
+    type: AuthenticationTypes;
+    name?: string;
+    in?: string;
   };
+}
+
+export interface IOutputAuthentication {
+  securityDefinitions?: IOutputSecurityDefinitions;
   security?: OutputSecurity;
 }

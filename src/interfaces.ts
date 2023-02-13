@@ -76,6 +76,10 @@ export type SecurityDefinition =
   | BasicSecurityDefinition
   | ApiKeySecurityDefinition;
 
+/**
+ * Simplified security object.
+ * @example [['MyId'], ['MyId2', 'MyId3]] becomes [{ MyId: [] }, { MyId2: [], MyId3: [] }
+ */
 export type Security = string[][];
 
 export interface Authentication {
@@ -123,6 +127,7 @@ export interface IDocsOptions {
    */
   prefixToOmit?: string;
   externalDocs?: IExternalDocs;
+  security?: Security;
 }
 
 export interface ITemplateRoute extends IDocsOptions {

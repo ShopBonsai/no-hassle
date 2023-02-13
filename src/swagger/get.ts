@@ -2,7 +2,7 @@ import { IDocsOptions, ISwaggerOptions, ISwaggerDefinition, SchemeType } from '.
 import { getTransformedPath, makeRemovePrefix } from '../lib/utils';
 import { getParameters } from './parameter';
 import { getResponses } from './response';
-import { getAuthentication } from './auth';
+import { getAuthentication, getSecurity } from './auth';
 import { HttpMethod } from '../constants';
 import { GLOBAL_SWAGGER } from './global';
 
@@ -29,6 +29,7 @@ export const generateSwagger = (
     tags = [],
     prefixToOmit,
     externalDocs,
+    security,
   } = options;
 
   const transformPath = prefixToOmit ? makeRemovePrefix(prefixToOmit) : undefined;
@@ -44,6 +45,7 @@ export const generateSwagger = (
       ...(summary && { summary }),
       ...(description && { description }),
       ...(externalDocs && { externalDocs }),
+      ...(security && { security: getSecurity(security) }),
     },
   };
   // If path already exists (other method for example)
