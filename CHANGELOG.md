@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.1] - 2023-02-13
+
+- 💥 **Important**: Version `3.0.0` is not to be used as this patch introduces more breaking changes. It is the "true" version 3, as both breaking changes should have been released simultaneously.
+- 🔥 Removed default `DEFAULT_API_KEY_HEADER`, this will be provided by the package user.
+- 💥 Removed `authOptions` and changed `auth` in `ISwaggerOptions` to be more flexible. Allows multiple `securityDefinitions` and a custom root-level `security`.
+- ✨ Allows passing `security` at the operation/route level to specify the authentication to use with individual routes.
+
 ## [3.0.0] - 2023-02-10
 
 ### Breaking
