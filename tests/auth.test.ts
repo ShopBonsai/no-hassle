@@ -150,9 +150,9 @@ describe('getAuthentication', () => {
       security: [[API_KEY_AUTH_ID_1, API_KEY_AUTH_ID_2]],
     };
 
+    expect.assertions(2);
     try {
       getAuthentication(auth);
-      expect(true).toBe(false);
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
       expect(error.message).toContain('Invalid security keys: APIKeyHeader2');
@@ -167,9 +167,9 @@ describe('getAuthentication', () => {
       ],
     };
 
+    expect.assertions(2);
     try {
       getAuthentication(auth);
-      expect(true).toBe(false);
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
       expect(error.message).toContain('Security definitions must have unique ids');
