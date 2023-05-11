@@ -74,6 +74,7 @@ export const getSwagger = (
     host = SwaggerDefaultConfig.HOST,
     schemes = [SchemeType.Http],
     auth,
+    basePath,
     ...otherOptions
   } = options;
 
@@ -83,6 +84,7 @@ export const getSwagger = (
     ...authentication,
     host,
     schemes,
+    basePath,
     info: {
       ...baseSwagger.info,
       ...otherOptions,
