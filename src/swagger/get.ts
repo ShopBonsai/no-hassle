@@ -69,12 +69,12 @@ export const generateSwagger = (
 export const getSwagger = (
   options: ISwaggerOptions = {},
   baseSwagger: ISwaggerDefinition = GLOBAL_SWAGGER,
-): ISwaggerDefinition => {
+  ): ISwaggerDefinition => {
   const {
     host = SwaggerDefaultConfig.HOST,
     schemes = [SchemeType.Http],
     auth,
-    basePath,
+    basePath = '/',
     ...otherOptions
   } = options;
 
