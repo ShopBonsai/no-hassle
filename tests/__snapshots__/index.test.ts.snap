@@ -1,36 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`router should add a route and generate swagger definition 1`] = `
-Object {
+{
   "basePath": "/",
-  "definitions": Object {
-    "BadRequestError": Object {
+  "definitions": {
+    "BadRequestError": {
       "description": "Provided input is invalid",
-      "properties": Object {
-        "errors": Object {
-          "items": Object {
-            "example": Object {
+      "properties": {
+        "errors": {
+          "items": {
+            "example": {
               "detail": "",
               "status": 400,
               "title": "Bad input request",
             },
-            "properties": Object {
-              "detail": Object {
+            "properties": {
+              "detail": {
                 "example": "Fatal issue",
                 "nullable": true,
                 "type": "string",
               },
-              "status": Object {
+              "status": {
                 "example": 500,
                 "format": "float",
                 "type": "number",
               },
-              "title": Object {
+              "title": {
                 "example": "Unknown error",
                 "type": "string",
               },
             },
-            "required": Array [
+            "required": [
               "status",
               "detail",
               "title",
@@ -42,33 +42,33 @@ Object {
       },
       "type": "object",
     },
-    "NotFoundError": Object {
+    "NotFoundError": {
       "description": "Not Found",
-      "properties": Object {
-        "errors": Object {
-          "items": Object {
-            "example": Object {
+      "properties": {
+        "errors": {
+          "items": {
+            "example": {
               "detail": "",
               "status": 404,
               "title": "Not Found",
             },
-            "properties": Object {
-              "detail": Object {
+            "properties": {
+              "detail": {
                 "example": "Fatal issue",
                 "nullable": true,
                 "type": "string",
               },
-              "status": Object {
+              "status": {
                 "example": 500,
                 "format": "float",
                 "type": "number",
               },
-              "title": Object {
+              "title": {
                 "example": "Unknown error",
                 "type": "string",
               },
             },
-            "required": Array [
+            "required": [
               "status",
               "detail",
               "title",
@@ -80,33 +80,33 @@ Object {
       },
       "type": "object",
     },
-    "UnauthorizedError": Object {
+    "UnauthorizedError": {
       "description": "Authentication information is missing or invalid",
-      "properties": Object {
-        "errors": Object {
-          "items": Object {
-            "example": Object {
+      "properties": {
+        "errors": {
+          "items": {
+            "example": {
               "detail": "",
               "status": 401,
               "title": "Authentication information is missing or invalid",
             },
-            "properties": Object {
-              "detail": Object {
+            "properties": {
+              "detail": {
                 "example": "Fatal issue",
                 "nullable": true,
                 "type": "string",
               },
-              "status": Object {
+              "status": {
                 "example": 500,
                 "format": "float",
                 "type": "number",
               },
-              "title": Object {
+              "title": {
                 "example": "Unknown error",
                 "type": "string",
               },
             },
-            "required": Array [
+            "required": [
               "status",
               "detail",
               "title",
@@ -118,33 +118,33 @@ Object {
       },
       "type": "object",
     },
-    "UnknownError": Object {
+    "UnknownError": {
       "description": "Unknown error",
-      "properties": Object {
-        "errors": Object {
-          "items": Object {
-            "example": Object {
+      "properties": {
+        "errors": {
+          "items": {
+            "example": {
               "detail": "",
               "status": 500,
               "title": "Unknown error",
             },
-            "properties": Object {
-              "detail": Object {
+            "properties": {
+              "detail": {
                 "example": "Fatal issue",
                 "nullable": true,
                 "type": "string",
               },
-              "status": Object {
+              "status": {
                 "example": 500,
                 "format": "float",
                 "type": "number",
               },
-              "title": Object {
+              "title": {
                 "example": "Unknown error",
                 "type": "string",
               },
             },
-            "required": Array [
+            "required": [
               "status",
               "detail",
               "title",
@@ -156,9 +156,9 @@ Object {
       },
       "type": "object",
     },
-    "testResult": Object {
-      "properties": Object {
-        "test": Object {
+    "testResult": {
+      "properties": {
+        "test": {
           "example": "test",
           "type": "string",
         },
@@ -167,62 +167,62 @@ Object {
     },
   },
   "host": "",
-  "info": Object {
-    "contact": Object {
+  "info": {
+    "contact": {
       "email": "developers@shopbonsai.ca",
     },
     "description": "The API is documented here",
     "title": "Default swagger title",
     "version": "1.0",
   },
-  "paths": Object {
-    "/hello": Object {
-      "get": Object {
+  "paths": {
+    "/hello": {
+      "get": {
         "description": "Hello Swagger",
-        "parameters": Array [],
-        "produces": Array [
+        "parameters": [],
+        "produces": [
           "application/json",
         ],
-        "responses": Object {
-          "200": Object {
+        "responses": {
+          "200": {
             "description": "Success",
-            "schema": Object {
+            "schema": {
               "$ref": "#/definitions/testResult",
             },
           },
-          "400": Object {
+          "400": {
             "description": "400 - Bad request",
-            "schema": Object {
+            "schema": {
               "$ref": "#/definitions/BadRequestError",
             },
           },
-          "401": Object {
+          "401": {
             "description": "401 - Unauthorized",
-            "schema": Object {
+            "schema": {
               "$ref": "#/definitions/UnauthorizedError",
             },
           },
-          "404": Object {
+          "404": {
             "description": "404 - Not found",
-            "schema": Object {
+            "schema": {
               "$ref": "#/definitions/NotFoundError",
             },
           },
-          "5XX": Object {
+          "5XX": {
             "description": "500 - Unknown error",
-            "schema": Object {
+            "schema": {
               "$ref": "#/definitions/UnknownError",
             },
           },
         },
         "summary": "Hello Swagger",
-        "tags": Array [
+        "tags": [
           "Hello Swagger",
         ],
       },
     },
   },
-  "schemes": Array [
+  "schemes": [
     "http",
   ],
   "swagger": "2.0",
