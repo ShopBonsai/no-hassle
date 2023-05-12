@@ -6776,7 +6776,7 @@ fsevents@^2.3.2:
   languageName: node
   linkType: hard
 
-typescript@4.4.3:
+"typescript@npm:4.4.3":
   version: 4.4.3
   resolution: "typescript@npm:4.4.3"
   bin:
